@@ -1,13 +1,14 @@
 ---
-import '@fontsource/dancing-script';
-import '@fontsource-variable/bodoni-moda'
-import '@fontsource/aboreto';
-import '@fontsource-variable/playfair-display';
+import "@fontsource/dancing-script";
+import "@fontsource-variable/bodoni-moda";
+import "@fontsource/aboreto";
+import "@fontsource-variable/playfair-display";
+import CuentaRegresiva from "../components/CuentaRegresiva.astro";
 
 interface Props {
 	Title: string;
- 	HeroImageSrc?: string;
-	PositionFocus?: "center"| string;
+	HeroImageSrc?: string;
+	PositionFocus?: "center" | string;
 	HeroText1?: string;
 	HeroText2?: string;
 	IntroductionMessage: string;
@@ -33,19 +34,41 @@ interface Props {
 	ConfirmationHoverButtonBg?: string;
 	ConfirmationButtonTextColor?: string;
 	ConfirmationHoverButtonTextColor?: string;
-
 }
 
-const { Title, HeroImageSrc,  HeroText1 = '', HeroText2 = '', IntroductionMessage = '', FirstColor = '#FFFFFF', SecondColor = '#FFFFFF', ThirdColor = '#FFFFFF', MusicTextColor = '#FFFFFF', MusicSpanColor = '#FFFFFF', MusicSrc = '', DateText = '', BackgroundTimerSrc = "/CloudWallpaper.jpeg", TargetDate = "2000-01-01T00:00:00", DirectionText1 = '', DirectionText2 = '', DirectionBackgroundColor = '#FFFFFF', MapsLink = '', HourText = '', ConfimationText = '', ConfirmationBackgroundColor = '#FFFFFF', WhatsappNumber = '', WhatsappMessage = '', ConfirmationButtonBackgroundColor = '#FFFFFF', ConfirmationHoverButtonBg = '#FFFFFF', ConfirmationButtonTextColor = '#000000', ConfirmationHoverButtonTextColor = '#FFFFFF' } = Astro.props;
-const charCount = HeroText1.length;
+const {
+	Title,
+	HeroImageSrc,
+	HeroText1 = "",
+	HeroText2 = "",
+	IntroductionMessage = "",
+	FirstColor = "#FFFFFF",
+	SecondColor = "#FFFFFF",
+	ThirdColor = "#FFFFFF",
+	MusicTextColor = "#FFFFFF",
+	MusicSpanColor = "#FFFFFF",
+	MusicSrc = "",
+	DateText = "",
+	BackgroundTimerSrc = "/CloudWallpaper.jpeg",
+	TargetDate = "2000-01-01T00:00:00",
+	DirectionText1 = "",
+	DirectionText2 = "",
+	DirectionBackgroundColor = "#FFFFFF",
+	MapsLink = "",
+	HourText = "",
+	ConfimationText = "",
+	ConfirmationBackgroundColor = "#FFFFFF",
+	WhatsappNumber = "",
+	WhatsappMessage = "",
+	ConfirmationButtonBackgroundColor = "#FFFFFF",
+	ConfirmationHoverButtonBg = "#FFFFFF",
+	ConfirmationButtonTextColor = "#000000",
+	ConfirmationHoverButtonTextColor = "#FFFFFF",
+} = Astro.props;
+const CantidadCaracteres = HeroText1.length;
 ---
 
-
-
-
-
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -53,472 +76,381 @@ const charCount = HeroText1.length;
 		<title>{Title}</title>
 	</head>
 	<body>
-
-
 		<div class="HeroContainer">
-			<img class="HeroImg" src= {HeroImageSrc} alt="Invitation Image">
+			<img class="HeroImg" src={HeroImageSrc} alt="Invitation Image" />
 
-			<div class="HeroDarknessLayer">
-    		</div>
-
-			
-
+			<div class="HeroDarknessLayer"></div>
 		</div>
-		
-		<div class="HeroNameContainer" style={`--chars: ${charCount};`}>
-        		<h1 class="HeroName" id="HeroText1">
-            		{HeroText1}
-        		</h1>
-				<h2 class="HeroName" id="HeroText2">{HeroText2}</h2>
-		    </div>
+
+		<div class="HeroNameContainer" style={`--chars: ${CantidadCaracteres};`}>
+			<h1 class="HeroName" id="HeroText1">
+				{HeroText1}
+			</h1>
+			<h2 class="HeroName" id="HeroText2">{HeroText2}</h2>
+		</div>
 
 		<div class="IntroductionMessage">
 			<h3>{IntroductionMessage}</h3>
 		</div>
 
-		<div class="MusicDiv"> 
-			<h1 class="MusicText">DALE <span class="MusicSpan">PLAY</span> A LA MUSICA</h1> 
-			<audio loop controls preload="none"> <source src={MusicSrc} type="audio/mpeg"></audio>
+		<div class="MusicDiv">
+			<h1 class="MusicText">
+				DALE <span class="MusicSpan">PLAY</span> A LA MUSICA
+			</h1>
+			<audio loop controls preload="none">
+				<source src={MusicSrc} type="audio/mpeg" />
+			</audio>
 		</div>
 
-		<div class="Timer">
-		
-			<h1 class="fecha">{DateText}</h1>
-   			<h1 id="fecha_faltan">Faltan</h1>
-    		<p class="temporizador">
-				<span id="dias">0</span> :
-				<span id="horas">0</span> :
-				<span id="minutos">0</span> :
-				<span id="segundos">0</span>
-    		</p>
-
-    		<div class="temporizador_detalles">
-    			<p id="dias_details">Dias</p>
-   				<p id="horas_details">Horas</p>
-    			<p id="minutos_details">Min</p>
-    			<p id="segundos_details">Seg</p>
-
-			</div>
-		</div>
+		<CuentaRegresiva 
+			DateText={DateText} 
+			TargetDate={TargetDate} 
+			BackgroundTimerSrc={BackgroundTimerSrc} 
+		/>
 
 		<section class="direccion">
-    		<div class="home_icon_div">
-    			<img class="home_icon" src="/home-1-svgrepo-com (2).svg" alt="home-1-svgrepo-com">
-    		</div>
+			<div class="home_icon_div">
+				<img
+					class="home_icon"
+					src="/home-1-svgrepo-com (2).svg"
+					alt="home-1-svgrepo-com"
+				/>
+			</div>
 
 			<h1 class="direccion_lugar">Lugar</h1>
-			<h1>{DirectionText1} <br> {DirectionText2}</h1>
+			<h1>{DirectionText1} <br /> {DirectionText2}</h1>
 			<h1 class="direccion_hora_text">Hora</h1>
 			<h1 class="direccion_hora">{HourText}</h1>
 
 			<div class="button_container">
-				<a href={MapsLink}><button class="button_como_llegar" >COMO LLEGAR </button></a>
+				<a href={MapsLink}
+					><button class="button_como_llegar">COMO LLEGAR</button>
+				</a>
 			</div>
 		</section>
 
 		<section class="confirmar_asistencia">
-			<img class="chat_gif" src="/charla-telefonica-unscreen.gif" alt="chat">
+			<img
+				class="chat_gif"
+				src="/charla-telefonica-unscreen.gif"
+				alt="chat"
+			/>
 			<div class="container_confirmar_texts">
 				<h1 class="confirmar_title">Confirmacion</h1>
-				<h1 class="confirmar_text">Tu presencia es muy importante para mi por favor confirma tu asistencia a continuación</h1>
+				<h1 class="confirmar_text">
+					Tu presencia es muy importante para mi por favor confirma tu
+					asistencia a continuación
+				</h1>
 			</div>
 
-			<a href={`https://wa.me/${WhatsappNumber}?text=${WhatsappMessage}`}><button class="Whatsapp_button" > Confirmar Asistencia</button></a>
-      
+			<a href={`https://wa.me/${WhatsappNumber}?text=${WhatsappMessage}`}
+				><button class="Whatsapp_button"> Confirmar Asistencia</button>
+			</a>
 		</section>
 
+		<style
+			define:vars={{
+				PositionFocus: Astro.props.PositionFocus,
+				FirstColor: Astro.props.FirstColor,
+				SecondColor: Astro.props.SecondColor,
+				ThirdColor: Astro.props.ThirdColor,
+				MusicTextColor: Astro.props.MusicTextColor,
+				MusicSpanColor: Astro.props.MusicSpanColor,
+				BackgroundTimerSrc: `url(${BackgroundTimerSrc})`,
+				DirectionBackgroundColor: Astro.props.DirectionBackgroundColor,
+				ConfirmationBackgroundColor:
+					Astro.props.ConfirmationBackgroundColor,
+				ConfirmationButtonBackgroundColor:
+					Astro.props.ConfirmationButtonBackgroundColor,
+				ConfirmationHoverButtonBg:
+					Astro.props.ConfirmationHoverButtonBg,
+				ConfirmationButtonTextColor:
+					Astro.props.ConfirmationButtonTextColor,
+				ConfirmationHoverButtonTextColor:
+					Astro.props.ConfirmationHoverButtonTextColor,
+			}}
+		>
+			html,
+			body {
+				margin: 0;
+				width: 100%;
+				z-index: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
 
-		
-		
+			h1,
+			h2,
+			h3,
+			h4,
+			p {
+				margin: 0;
+				padding: 0;
+			}
 
+			.HeroContainer {
+				position: sticky;
+				top: 0;
+				width: 100%;
+				height: 100vh;
+				z-index: -1;
+				overflow: hidden;
+				/* Quitamos el view-timeline-name, usaremos el scroll global */
+			}
 
+			.HeroImg {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				object-position: var(--PositionFocus) top;
+			}
 
+			.HeroDarknessLayer {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: black;
+				opacity: 0; /* Empieza transparente */
+				z-index: 1; /* Encima de la imagen */
 
+				animation: oscurecer linear both;
+				animation-timeline: scroll(
+					root
+				); /* 'root' es el scroll de la ventana de toda la vida */
 
+				/* Queremos que se oscurezca en los primeros 500px de bajada */
+				animation-range: 0px 500px;
+			}
+
+			.HeroNameContainer {
+				position: absolute;
+				top: 90%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 100%;
+				text-align: center;
+				z-index: 2; /* Encima de la capa negra */
+				pointer-events: none;
+			}
+
+			.HeroName {
+				font-family: "Dancing Script", cursive;
+				color: white;
+				text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+				opacity: 0;
+				animation: fadeAndZoomIn linear both;
+				animation-timeline: scroll(root);
+				animation-range: 0% 14%;
+				white-space: nowrap;
+				font-size: clamp(1rem, calc(90vw / (var(--chars) * 0.5)), 8rem);
+				line-height: 1.1;
+			}
+
+			#HeroText1 {
+				display: inline-block;
+				width: auto;
+			}
+
+			#HeroText2 {
+				font-size: clamp(2.5rem, 6vw, 6rem);
+			}
+
+			.IntroductionMessage {
+				width: 100%;
+				text-align: center;
+				text-transform: capitalize;
+				background-color: var(--SecondColor);
+				font-family: "Dancing Script", cursive;
+				font-size: clamp(1.5rem, 4vw, 2rem);
+				margin: 0;
+				font-weight: bold;
+			}
+
+			.IntroductionMessage h3 {
+				padding: 7.5%;
+			}
+			.MusicDiv {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				margin: 0;
+				padding-top: 30%;
+				padding-bottom: 30%;
+				align-items: center;
+				background-color: var(--FirstColor);
+			}
+
+			.MusicText {
+				font-family: "Aboreto", serif;
+				font-size: clamp(1rem, 5vw, 1.5rem);
+				text-align: center;
+				padding: 10%;
+				color: var(--MusicTextColor);
+			}
+
+			.MusicSpan {
+				color: var(--MusicSpanColor);
+				font-weight: bold;
+			}
+
+			.direccion {
+				font-family: "Playfair Display Variable", serif;
+				font-weight: lighter;
+				text-align: center;
+				color: #ffffff;
+				background-color: var(--DirectionBackgroundColor);
+				display: flex;
+				flex-direction: column;
+				padding-top: 40%;
+				padding-bottom: 30%;
+			}
+
+			.home_icon {
+				height: 4rem;
+			}
+
+			.direccion_lugar {
+				font-size: 3rem;
+			}
+
+			.direccion_hora_text {
+				font-size: 3rem;
+				padding-top: 2rem;
+			}
+
+			.direccion_hora {
+				font-size: 4rem;
+				padding-bottom: 6rem;
+			}
+
+			.button_container {
+				display: flex;
+				justify-content: center;
+				margin-bottom: 4rem;
+			}
+
+			.button_como_llegar {
+				color: #ffffff;
+				background-color: var(--ThirdColor);
+				border: 2px solid rgb(255, 255, 255);
+				border-radius: 0px;
+				padding: 18px 36px;
+				display: inline-block;
+				font-family: "Lucida Console", Monaco, monospace;
+				font-size: 14px;
+				letter-spacing: 1px;
+				cursor: pointer;
+				box-shadow: inset 0 0 0 0 #ffffff;
+				-webkit-transition: ease-out 0.4s;
+				-moz-transition: ease-out 0.4s;
+				transition: ease-out 0.4s;
+				width: 17rem;
+			}
+
+			.button_como_llegar:hover {
+				box-shadow: inset 0 0 0 50px #ffffff;
+				color: #000000;
+			}
+
+			.confirmar_asistencia {
+				text-align: center;
+				color: var(--MusicTextColor);
+				background-color: var(--ConfirmationBackgroundColor);
+				padding-top: 20%;
+				padding-bottom: 20%;
+			}
+
+			.chat_gif {
+				height: 10rem;
+				display: flex;
+				justify-self: center;
+			}
+
+			.confirmar_title {
+				font-family: "Dancing Script", cursive;
+				font-weight: lighter;
+				font-style: normal;
+				font-size: 3rem;
+			}
+
+			.confirmar_text {
+				font-family: "Bodoni Moda Variable", cursive;
+				padding: 2rem;
+				font-weight: lighter;
+			}
+
+			.Whatsapp_button {
+				background-color: var(--ConfirmationButtonBackgroundColor);
+				color: var(--ConfirmationButtonTextColor);
+				border: solid 2px #ffffff;
+				border-radius: 0px;
+				padding: 18px 36px;
+				display: inline-block;
+				font-family: "Playfair Display Variable", serif;
+				font-size: 1rem;
+				letter-spacing: 1px;
+				cursor: pointer;
+				box-shadow: inset 0 0 0 0 #ffffff;
+				-webkit-transition: ease-out 0.4s;
+				-moz-transition: ease-out 0.4s;
+				transition: ease-out 0.4s;
+				width: 17rem;
+				margin-top: 3rem;
+			}
+
+			.Whatsapp_button:hover {
+				color: var(--ConfirmationHoverButtonTextColor);
+				background-color: var(--ConfirmationHoverButtonBg);
+				border: 2px solid rgb(255, 255, 255);
+				border-radius: 0px;
+			}
+
+			@media (min-width: 768px) {
+				.MusicDiv {
+					padding-top: 5%;
+					padding-bottom: 5%;
+				}
+
+				.HeroDarknessLayer {
+					animation-range: 0px 250px;
+				}
+
+				.HeroNameContainer {
+					top: 70%;
+				}
+
+				.HeroName {
+					animation-range: 0% 5%;
+				}
+			}
+
+			@keyframes oscurecer {
+				from {
+					opacity: 0;
+				}
+
+				to {
+					opacity: 0.6;
+				}
+			}
+
+			@keyframes fadeAndZoomIn {
+				/* Al inicio del scroll (arriba del todo) */
+				from {
+					opacity: 0;
+					transform: scale(0.5);
+					filter: blur(10px);
+				}
+				/* Al llegar a los 400px de scroll */
+				to {
+					opacity: 1;
+					transform: scale(1); /* Un toque extra de calidad */
+				}
+			}
+		</style>
 
 
 	</body>
 </html>
-
-<style define:vars={{ PositionFocus: Astro.props.PositionFocus, FirstColor: Astro.props.FirstColor, SecondColor: Astro.props.SecondColor, ThirdColor: Astro.props.ThirdColor, MusicTextColor: Astro.props.MusicTextColor, MusicSpanColor: Astro.props.MusicSpanColor, BackgroundTimerSrc:`url(${BackgroundTimerSrc})`, DirectionBackgroundColor: Astro.props.DirectionBackgroundColor, ConfirmationBackgroundColor: Astro.props.ConfirmationBackgroundColor, ConfirmationButtonBackgroundColor: Astro.props.ConfirmationButtonBackgroundColor, ConfirmationHoverButtonBg: Astro.props.ConfirmationHoverButtonBg, ConfirmationButtonTextColor: Astro.props.ConfirmationButtonTextColor, ConfirmationHoverButtonTextColor: Astro.props.ConfirmationHoverButtonTextColor }}>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		z-index: 0;
-  		padding: 0;
-  		box-sizing: border-box;
-	}
-
-	h1, h2, h3,h4, p {
-    margin: 0;
-    padding: 0;
-	} 
-
-	.HeroContainer {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        height: 100vh;
-        z-index: -1;
-        overflow: hidden;
-        /* Quitamos el view-timeline-name, usaremos el scroll global */
-		
-    }
-
-	
-	.HeroImg {
-		width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: var(--PositionFocus) top;
-	}
-	
-	.HeroDarknessLayer {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: black;
-        opacity: 0; /* Empieza transparente */
-        z-index: 1; /* Encima de la imagen */
-
-       animation: oscurecer linear both;
-        animation-timeline: scroll(root); /* 'root' es el scroll de la ventana de toda la vida */
-        
-        /* Queremos que se oscurezca en los primeros 500px de bajada */
-        animation-range: 0px 500px;
-    }
-
-	.HeroNameContainer {
-        position: absolute;
-        top: 90%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        text-align: center;
-        z-index: 2; /* Encima de la capa negra */
-        pointer-events: none;
-    }
-
-    .HeroName {
-        font-family: "Dancing Script", cursive;
-        color: white; 
-        text-shadow: 2px 2px 20px rgba(0,0,0,0.5);
-		opacity: 0;
-		animation: fadeAndZoomIn linear both;
-        animation-timeline: scroll(root);
-		animation-range: 0% 14%;
-		white-space: nowrap;
-		font-size: clamp(1rem, calc(90vw / (var(--chars) * 0.5)), 8rem);
-        line-height: 1.1;
-		
-    }
-	
-	#HeroText1 {
-		display: inline-block;
-		width: auto;	
-	}
-
-	#HeroText2 {
-		font-size: clamp(2.5rem, 6vw, 6rem);
-	}
-
-	.IntroductionMessage {
-		width: 100%;
-		text-align: center;
-		text-transform: capitalize;
-		background-color: var(--SecondColor);
-		font-family: "Dancing Script", cursive;
-		font-size: clamp(1.5rem, 4vw, 2rem);
-		margin: 0;
-		font-weight: bold;
-	}
-
-	.IntroductionMessage h3 {
-		padding: 7.5%;
-	}
-	.MusicDiv {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		margin: 0;
-		padding-top: 30%;
-		padding-bottom: 30%;
-		align-items: center;
-		background-color: var(--FirstColor);
-	}
-
-	.MusicText {
-		font-family: "Aboreto", serif;
-		font-size: clamp(1rem, 5vw, 1.5rem);
-		text-align: center;
-		padding: 10%;
-		color: var(--MusicTextColor);
-	}
-
-	.MusicSpan {
-		color: var(--MusicSpanColor);
-		font-weight: bold;
-	}
-
-	.Timer{
-  		text-align: center;
-		background-image: var(--BackgroundTimerSrc);
-		background-size: cover;
-		min-height: 20vh;
-		padding: 1rem;
-		padding-top: 30%;
-		padding-bottom: 30%;
-  
-	}
-
-	.fecha {
-	font-family: 'Bodoni Moda Variable', serif;
-	padding-top: 1rem;
-	font-size: 2rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	}
-
-
-	#fecha_faltan {
-	font-family:"Dancing Script", cursive;
-	font-size: 2rem;
-	margin-top: 1rem;
-	}
-
-	.temporizador {
-	font-size: 3rem;
-	font-family: "Dancing Script", cursive;
-	}
-
-	.temporizador_detalles {
-	position: relative;
-	right: 0.5rem;
-	z-index: 2;
-	display: flex;
-	justify-content: center;
-	gap: 1.2rem ;
-	font-size: 2rem;
-	font-family: "Dancing Script", cursive;
-	}
-
-	#segundos_details {
-	margin-left: 0.2rem;
-
-	}
-
-	.direccion {
-	font-family:'Playfair Display Variable', serif;
-	font-weight: lighter;
-	text-align: center;
-	color: #ffffff;
-	background-color: var(--DirectionBackgroundColor);
-	display: flex;
-	flex-direction: column;
-	padding-top: 40%;
-	padding-bottom: 30%;
-	}
-
-	.home_icon{
-	height: 4rem;
-	}
-
-
-	.direccion_lugar {
-	font-size: 3rem;
-
-	}
-
-	.direccion_hora_text {
-	font-size: 3rem;
-	padding-top: 2rem;
-
-	}
-
-	.direccion_hora {
-	font-size: 4rem;
-	padding-bottom: 6rem;
-
-	}
-
-	.button_container {
-	display: flex;
-	justify-content:center;
-	margin-bottom: 4rem;
-	}
-
-	.button_como_llegar {
-	color: #ffffff;
-	background-color: var(--ThirdColor);
-	border: 2px solid rgb(255, 255, 255);
-	border-radius: 0px;
-	padding: 18px 36px;
-	display: inline-block;
-	font-family: "Lucida Console", Monaco, monospace;
-	font-size: 14px;
-	letter-spacing: 1px;
-	cursor: pointer;
-	box-shadow: inset 0 0 0 0 #ffffff;
-	-webkit-transition: ease-out 0.4s;
-	-moz-transition: ease-out 0.4s;
-	transition: ease-out 0.4s;
-	width: 17rem;
-	}
-
-	.button_como_llegar:hover {
-	box-shadow: inset 0 0 0 50px #ffffff;
-	color: #000000;
-	}
-
-	.confirmar_asistencia{
-	text-align: center;
-	color: var(--MusicTextColor);
-	background-color: var(--ConfirmationBackgroundColor);
-	padding-top: 20%;
-	padding-bottom: 20%;
-	}
-
-	.chat_gif{
-	height: 10rem;
-	display: flex;
-	justify-self: center;
-	}
-
-	.confirmar_title{
-	font-family:"Dancing Script", cursive;
-	font-weight: lighter;
-	font-style: normal;
-	font-size: 3rem;
-	}
-
-	.confirmar_text{
-	font-family: "Bodoni Moda Variable", cursive;
-	padding: 2rem;
-	font-weight: lighter;
-
-	}
-
-	.Whatsapp_button {
-	background-color:  var(--ConfirmationButtonBackgroundColor);
-	color: var(--ConfirmationButtonTextColor);
-	border: solid 2px #ffffff;
-	border-radius: 0px;
-	padding: 18px 36px;
-	display: inline-block;
-	font-family: "Playfair Display Variable", serif;
-	font-size: 1rem;
-	letter-spacing: 1px;
-	cursor: pointer;
-	box-shadow: inset 0 0 0 0 #ffffff;
-	-webkit-transition: ease-out 0.4s;
-	-moz-transition: ease-out 0.4s;
-	transition: ease-out 0.4s;
-	width: 17rem;
-	margin-top: 3rem;
-	}
-
-	.Whatsapp_button:hover {
-	color: var(--ConfirmationHoverButtonTextColor);
-	background-color: var(--ConfirmationHoverButtonBg);
-	border: 2px solid rgb(255, 255, 255);
-	border-radius: 0px;
-	}
-
-
-
-
-
-
-
-
-
-
-
-	@media (min-width: 768px) {
-
-		.MusicDiv, .Timer {
-			padding-top: 5%;
-			padding-bottom: 5%;
-		}
-
-		.HeroDarknessLayer {
-			animation-range: 0px 250px;
-		}
-
-		.HeroNameContainer {
-			top: 70%;
-		}
-
-		.HeroName {
-			animation-range: 0% 5%;
-		}
-
-	}
-
-	@keyframes oscurecer {
-  from {
-    opacity: 0;
-  }
-
-  to{
-    opacity: 0.6;
-  }
-
-
-}
-
-@keyframes fadeAndZoomIn {
-        /* Al inicio del scroll (arriba del todo) */
-        from {
-            opacity: 0;
-            transform: scale(0.5);
-			filter: blur(10px)
-        }
-        /* Al llegar a los 400px de scroll */
-        to {
-            opacity: 1;
-            transform: scale(1);
-            ; /* Un toque extra de calidad */
-        }
-    }
-
-</style>
-
-<script define:vars={{ TargetDate }}>
-
-
-
-
-  const fechaObjetivo = new Date(TargetDate).getTime();
-
-  const updateTimer = () => {
-    const ahora = new Date().getTime();
-    const diferencia = fechaObjetivo - ahora;
-
-
-    // Cálculos
-    const d = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-    // Actualizar con seguridad (verificando que existan y convirtiendo a String)
-    const setElem = (id, val) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = String(val).padStart(2, '0');
-    };
-
-    setElem("dias", d);
-    setElem("horas", h);
-    setElem("minutos", m);
-    setElem("segundos", s);
-  };
-
-  // Ejecutar cada segundo
-  setInterval(updateTimer, 1000);
-  updateTimer(); // Ejecutar una vez al inicio para evitar el salto de 0 a la fecha
-
-</script>

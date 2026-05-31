@@ -5,9 +5,14 @@ import '@fontsource/aboreto';
 import '@fontsource-variable/playfair-display';
 import '../styles/global.css';
 
-// Importamos los componentes que viviran dentro del Layout
+// Importamos los componentes
 import AnimatedEnvelope from '../components/AnimatedEnvelop.astro';
 import SeccionMusica from '../components/MusicSectionStandard.astro';
+import CuentaRegresiva from '../components/CuentaRegresiva.astro';
+import CalendarioEvento from '../components/CalendarioEvento.astro';
+
+// AQUÍ ESTÁ EL IMPORT FALTANTE: Traemos tu generador con su nombre real
+import { generarPaletaSaaS } from '../utils/ColorPaletteGenerator.js';
 
 interface Props {
     // Datos de la Página
@@ -15,12 +20,20 @@ interface Props {
     
     // Datos del Envelope (Sobre)
     TituloNombre: string;
-    ColorSobre: string;
+    ColorSobre: string; // Este es el HEX principal que usaremos como base
     FotoPrincipal: string;
 
     // Datos de la Música
     AudioUrl: string;
     TextoMusica: string;
+
+    // Datos del Contador
+    DateText?: string;
+    TargetDate?: string;
+    BackgroundTimerSrc?: string;
+
+    // ELIMINÉ: FechaEvento y fondo de la interfaz porque el calendario usará TargetDate
+    // y los colores se generarán automáticamente aquí dentro, no se pedirán por fuera.
 }
 
 const { 
@@ -29,8 +42,14 @@ const {
     ColorSobre, 
     FotoPrincipal,
     AudioUrl,
-    TextoMusica
+    TextoMusica,
+    DateText = "01 Enero 2000",
+    TargetDate = "2000-01-01T00:00:00",
+    BackgroundTimerSrc = ""
 } = Astro.props;
+
+// AQUÍ OCURRE LA MAGIA: Ejecutamos el motor de color usando el ColorSobre
+const paleta = generarPaletaSaaS(ColorSobre);
 ---
 
 <!doctype html>
@@ -39,6 +58,7 @@ const {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <title>{Title}</title>
+        <link rel="preload" as="image" href={FotoPrincipal} />
     </head>
     <body class="bg-white">
 
@@ -51,6 +71,21 @@ const {
         <SeccionMusica 
             AudioUrl={AudioUrl}
             TextoMusica={TextoMusica}
+        />
+
+        <CuentaRegresiva 
+            DateText={DateText}
+            TargetDate={TargetDate}
+            BackgroundTimerSrc={BackgroundTimerSrc}
+        />
+
+        <CalendarioEvento
+            FechaEvento={TargetDate}
+            fondo={paleta.fondo}
+            borde={paleta.borde}
+            acento={paleta.acento}
+            textoAcento={paleta.textoAcento}
+            textoFondo={paleta.textoFondo}
         />
 
         <main>

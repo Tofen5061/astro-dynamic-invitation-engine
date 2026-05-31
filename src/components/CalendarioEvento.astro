@@ -1,0 +1,74 @@
+---
+// src/components/CalendarioEvento.astro
+
+// 1. Agregamos textoAcento y textoFondo a las props que recibe
+const { FechaEvento, fondo, borde, acento, textoAcento, textoFondo } = Astro.props;
+
+// Lógica del Calendario (Intacta)
+const dateObj = new Date(FechaEvento);
+const eventYear = dateObj.getFullYear();
+const eventMonth = dateObj.getMonth();
+const eventDay = dateObj.getDate();
+
+const daysInMonth = new Date(eventYear, eventMonth + 1, 0).getDate();
+const firstDayOfWeek = new Date(eventYear, eventMonth, 1).getDay();
+
+const emptyDays = Array.from({ length: firstDayOfWeek });
+const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+const weekDays = ['D', 'L', 'M', 'M', 'J', 'V', 'S'];
+const monthNames = [
+  "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", 
+  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+];
+---
+
+<div class="mx-auto flex flex-col items-center w-full p-4"
+     style={`background-color: ${fondo};`}>
+
+  <h3 
+    class="text-3xl font-bold uppercase font-DancingScript tracking-widest w-full text-center mb-8 transition-colors duration-500 text-shadow-md"
+    style={`color: ${acento};`}
+  >
+     {eventDay} de {monthNames[eventMonth]} de {eventYear}
+  </h3>
+
+  <div 
+    class="max-w-xs rounded-2xl p-6 shadow-2xl border transition-all duration-500"
+    style={`background-color: ${fondo}; border-color: ${borde}; --color-acento: ${acento};`}
+  >
+    <div class="text-center mb-6">
+      <h3 
+        class="text-xl font-bold tracking-widest uppercase transition-colors duration-300"
+        style={`color: ${textoFondo};`}
+      >
+        {monthNames[eventMonth]} {eventYear}
+      </h3>
+    </div>
+
+    <div class="grid grid-cols-7 gap-2 text-center text-sm">
+      {weekDays.map((day) => (
+        <div class="text-neutral-500 font-semibold mb-2">{day}</div>
+      ))}
+
+      {emptyDays.map(() => (
+        <div class="w-9 h-9"></div>
+      ))}
+
+      {days.map((day) => {
+        const isEventDay = day === eventDay;
+        return (
+          <div class="flex justify-center items-center">
+            <span 
+              class={`flex items-center justify-center w-9 h-9 rounded-xl text-sm font-medium transition-all duration-300 ${isEventDay ? "font-bold tracking-tight shadow-lg" : "text-neutral-400 hover:bg-white/5"}`}
+              style={isEventDay ? `background-color: var(--color-acento); color: ${textoAcento}; box-shadow: 0 10px 15px -3px ${acento}40;` : ''}
+            >
+              {day}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+</div>
