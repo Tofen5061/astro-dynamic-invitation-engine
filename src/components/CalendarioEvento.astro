@@ -2,10 +2,10 @@
 // src/components/CalendarioEvento.astro
 
 // 1. Agregamos textoAcento y textoFondo a las props que recibe
-const { FechaEvento, fondo, borde, acento, textoAcento, textoFondo } = Astro.props;
+const { fechaEvento, fondo, borde, acento, textoAcento, textoFondo } = Astro.props;
 
 // Lógica del Calendario (Intacta)
-const dateObj = new Date(FechaEvento);
+const dateObj = new Date(fechaEvento);
 const eventYear = dateObj.getFullYear();
 const eventMonth = dateObj.getMonth();
 const eventDay = dateObj.getDate();

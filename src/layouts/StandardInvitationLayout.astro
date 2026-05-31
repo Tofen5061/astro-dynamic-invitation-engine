@@ -16,40 +16,40 @@ import { generarPaletaSaaS } from '../utils/ColorPaletteGenerator.js';
 
 interface Props {
     // Datos de la Página
-    Title: string;
+    title: string;
     
     // Datos del Envelope (Sobre)
-    TituloNombre: string;
-    ColorSobre: string; // Este es el HEX principal que usaremos como base
-    FotoPrincipal: string;
+    tituloNombre: string;
+    colorSobre: string; // Este es el HEX principal que usaremos como base
+    fotoPrincipal: string;
 
     // Datos de la Música
-    AudioUrl: string;
-    TextoMusica: string;
+    audioUrl: string;
+    textoMusica: string;
 
     // Datos del Contador
-    DateText?: string;
-    TargetDate?: string;
-    BackgroundTimerSrc?: string;
+    dateText?: string;
+    targetDate?: string;
+    backgroundTimerSrc?: string;
 
     // ELIMINÉ: FechaEvento y fondo de la interfaz porque el calendario usará TargetDate
     // y los colores se generarán automáticamente aquí dentro, no se pedirán por fuera.
 }
 
 const { 
-    Title, 
-    TituloNombre, 
-    ColorSobre, 
-    FotoPrincipal,
-    AudioUrl,
-    TextoMusica,
-    DateText = "01 Enero 2000",
-    TargetDate = "2000-01-01T00:00:00",
-    BackgroundTimerSrc = ""
+    title, 
+    tituloNombre, 
+    colorSobre, 
+    fotoPrincipal,
+    audioUrl,
+    textoMusica,
+    dateText = "01 Enero 2000",
+    targetDate = "2000-01-01T00:00:00",
+    backgroundTimerSrc = ""
 } = Astro.props;
 
-// AQUÍ OCURRE LA MAGIA: Ejecutamos el motor de color usando el ColorSobre
-const paleta = generarPaletaSaaS(ColorSobre);
+// AQUÍ OCURRE LA MAGIA: Ejecutamos el motor de color usando el colorSobre
+const paleta = generarPaletaSaaS(colorSobre);
 ---
 
 <!doctype html>
@@ -57,30 +57,30 @@ const paleta = generarPaletaSaaS(ColorSobre);
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <title>{Title}</title>
-        <link rel="preload" as="image" href={FotoPrincipal} />
+        <title>{title}</title>
+        <link rel="preload" as="image" href={fotoPrincipal} />
     </head>
     <body class="bg-white">
 
         <AnimatedEnvelope 
-            TituloNombre={TituloNombre}
-            ColorSobre={ColorSobre}
-            FotoUrl={FotoPrincipal}
+            tituloNombre={tituloNombre}
+            colorSobre={colorSobre}
+            fotoUrl={fotoPrincipal}
         />
 
         <SeccionMusica 
-            AudioUrl={AudioUrl}
-            TextoMusica={TextoMusica}
+            audioUrl={audioUrl}
+            textoMusica={textoMusica}
         />
 
         <CuentaRegresiva 
-            DateText={DateText}
-            TargetDate={TargetDate}
-            BackgroundTimerSrc={BackgroundTimerSrc}
+            dateText={dateText}
+            targetDate={targetDate}
+            backgroundTimerSrc={backgroundTimerSrc}
         />
 
         <CalendarioEvento
-            FechaEvento={TargetDate}
+            fechaEvento={targetDate}
             fondo={paleta.fondo}
             borde={paleta.borde}
             acento={paleta.acento}

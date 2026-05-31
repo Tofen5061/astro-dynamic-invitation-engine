@@ -1,45 +1,45 @@
 ---
 interface Props {
-  DateText?: string;
-  TargetDate?: string;
-  BackgroundTimerSrc?: string;
+  dateText?: string;
+  targetDate?: string;
+  backgroundTimerSrc?: string;
 }
 
 const {
-  DateText = "",
-  TargetDate = "2000-01-01T00:00:00",
-  BackgroundTimerSrc = "",
+  dateText = "",
+  targetDate = "2000-01-01T00:00:00",
+  backgroundTimerSrc = "",
 } = Astro.props;
 ---
 
 <div class="Timer">
-  <h1 class="fecha">{DateText}</h1>
-  <h1 id="FechaFaltan">Faltan</h1>
+  <h1 class="fecha">{dateText}</h1>
+  <h1 id="fechaFaltan">Faltan</h1>
   <p class="temporizador">
-    <span id="Dias">0</span> :
-    <span id="Horas">0</span> :
-    <span id="Minutos">0</span> :
-    <span id="Segundos">0</span>
+    <span id="dias">0</span> :
+    <span id="horas">0</span> :
+    <span id="minutos">0</span> :
+    <span id="segundos">0</span>
   </p>
 
   <div class="temporizador_detalles">
-    <p id="DiasDetalles">Dias</p>
-    <p id="HorasDetalles">Horas</p>
-    <p id="MinutosDetalles">Min</p>
-    <p id="SegundosDetalles">Seg</p>
+    <p id="diasDetalles">Dias</p>
+    <p id="horasDetalles">Horas</p>
+    <p id="minutosDetalles">Min</p>
+    <p id="segundosDetalles">Seg</p>
   </div>
 </div>
 
 <style
   define:vars={{
-    BackgroundImage: BackgroundTimerSrc
-      ? `url('${BackgroundTimerSrc}')`
+    backgroundImage: backgroundTimerSrc
+      ? `url('${backgroundTimerSrc}')`
       : "none",
   }}
 >
   .Timer {
     text-align: center;
-    background-image: var(--BackgroundImage);
+    background-image: var(--backgroundImage);
     background-size: cover;
     background-position: center;
     min-height: 20vh;
@@ -66,7 +66,7 @@ const {
     text-transform: uppercase;
   }
 
-  #FechaFaltan {
+  #fechaFaltan {
     font-family: "Dancing Script", cursive;
     font-size: 2rem;
     margin-top: 1rem;
@@ -88,7 +88,7 @@ const {
     font-family: "Dancing Script", cursive;
   }
 
-  #SegundosDetalles {
+  #segundosDetalles {
     margin-left: 0.2rem;
   }
 
@@ -100,41 +100,41 @@ const {
   }
 </style>
 
-<script define:vars={{ TargetDate }}>
-  const FechaObjetivo = new Date(TargetDate).getTime();
+<script define:vars={{ targetDate }}>
+  const fechaObjetivo = new Date(targetDate).getTime();
 
-  const ActualizarTemporizador = () => {
-    const Ahora = new Date().getTime();
-    const Diferencia = FechaObjetivo - Ahora;
+  const actualizarTemporizador = () => {
+    const ahora = new Date().getTime();
+    const diferencia = fechaObjetivo - ahora;
 
     // Cálculos
-    const DiasCalculados = Math.floor(Diferencia / (1000 * 60 * 60 * 24));
-    const HorasCalculadas = Math.floor(
-      (Diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    const diasCalculados = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+    const horasCalculadas = Math.floor(
+      (diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
     );
-    const MinutosCalculados = Math.floor((Diferencia % (1000 * 60 * 60)) / (1000 * 60));
-    const SegundosCalculados = Math.floor((Diferencia % (1000 * 60)) / 1000);
+    const minutosCalculados = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+    const segundosCalculados = Math.floor((diferencia % (1000 * 60)) / 1000);
 
     // Actualizar con seguridad (verificando que existan y convirtiendo a String)
-    const EstablecerElemento = (Id, Val) => {
-      const Elemento = document.getElementById(Id);
-      if (Elemento) Elemento.textContent = String(Math.max(0, Val)).padStart(2, "0");
+    const establecerElemento = (id, val) => {
+      const elemento = document.getElementById(id);
+      if (elemento) elemento.textContent = String(Math.max(0, val)).padStart(2, "0");
     };
 
-    if (Diferencia > 0) {
-      EstablecerElemento("Dias", DiasCalculados);
-      EstablecerElemento("Horas", HorasCalculadas);
-      EstablecerElemento("Minutos", MinutosCalculados);
-      EstablecerElemento("Segundos", SegundosCalculados);
+    if (diferencia > 0) {
+      establecerElemento("dias", diasCalculados);
+      establecerElemento("horas", horasCalculadas);
+      establecerElemento("minutos", minutosCalculados);
+      establecerElemento("segundos", segundosCalculados);
     } else {
-      EstablecerElemento("Dias", 0);
-      EstablecerElemento("Horas", 0);
-      EstablecerElemento("Minutos", 0);
-      EstablecerElemento("Segundos", 0);
+      establecerElemento("dias", 0);
+      establecerElemento("horas", 0);
+      establecerElemento("minutos", 0);
+      establecerElemento("segundos", 0);
     }
   };
 
   // Ejecutar cada segundo
-  setInterval(ActualizarTemporizador, 1000);
-  ActualizarTemporizador(); // Ejecutar una vez al inicio para evitar el salto de 0 a la fecha
+  setInterval(actualizarTemporizador, 1000);
+  actualizarTemporizador(); // Ejecutar una vez al inicio para evitar el salto de 0 a la fecha
 </script>

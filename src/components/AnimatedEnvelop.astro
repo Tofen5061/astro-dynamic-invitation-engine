@@ -1,64 +1,64 @@
 ---
 interface Props {
-  TituloNombre: string;
-  ColorSobre?: string;
-  FotoUrl: string;
+  tituloNombre: string;
+  colorSobre?: string;
+  fotoUrl: string;
 }
 
-const { TituloNombre, ColorSobre = "bg-pink-600", FotoUrl } = Astro.props;
+const { tituloNombre, colorSobre = "bg-pink-600", fotoUrl } = Astro.props;
 
-const Ruta = "";
-const ImagenSobreTrasera = `${Ruta}/EnvelopBack.webp`;
-const ImagenSobreFrontal = `${Ruta}/EnvelopFront.webp`;
-const ImagenSobreSolapa = `${Ruta}/EnvelopFlap.webp`;
-const ImagenSobreSello = `${Ruta}/EnvelopSeal.webp`;
+const ruta = "";
+const imagenSobreTrasera = `${ruta}/EnvelopBack.webp`;
+const imagenSobreFrontal = `${ruta}/EnvelopFront.webp`;
+const imagenSobreSolapa = `${ruta}/EnvelopFlap.webp`;
+const imagenSobreSello = `${ruta}/EnvelopSeal.webp`;
 ---
 
 <!-- 1. Envolvemos todo en un wrapper para controlar el flujo -->
-<div id="WrapperSeccionSobre" class="relative w-full">
-  <div id="ContenedorGlobalScroll" class="h-[300vh] w-full">
+<div id="wrapperSeccionSobre" class="relative w-full">
+  <div id="contenedorGlobalScroll" class="h-[300vh] w-full">
     <div
-      id="PanelFijo"
+      id="panelFijo"
       class="relative h-screen w-full flex flex-col items-center justify-end pb-24 md:justify-center overflow-hidden"
-      style={`background-image: url('${FotoUrl}'); background-size: cover; background-position: 50% 30%;`}
+      style={`background-image: url('${fotoUrl}'); background-size: cover; background-position: 50% 30%;`}
     >
       <div
-        id="EfectoOscuro"
+        id="efectoOscuro"
         class="absolute inset-0 bg-black/20 backdrop-blur-md z-0"
       >
       </div>
 
-      <div id="ContenedorTitulo" class="relative z-10">
+      <div id="contenedorTitulo" class="relative z-10">
         <h2
-          id="TituloPrincipal"
+          id="tituloPrincipal"
           class="opacity-0 translate-y-8 font-DancingScript text-8xl md:text-6xl lg:text-7xl text-center mb-8 text-white font-bold [text-shadow:_2px_4px_6px_rgb(0_0_0_/_50%)] will-change-transform"
         >
-          {TituloNombre}
+          {tituloNombre}
         </h2>
       </div>
 
       <div
         class="relative z-10 w-[92%] max-w-[400px] aspect-[16/11] [perspective:1500px]"
-        id="EscenaTresD"
+        id="escenaTresD"
       >
         <div
           class={`absolute inset-0 z-1`}
-          style={`background-color: ${ColorSobre}; mask-image: url('${ImagenSobreTrasera}'); -webkit-mask-image: url('${ImagenSobreTrasera}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;`}
+          style={`background-color: ${colorSobre}; mask-image: url('${imagenSobreTrasera}'); -webkit-mask-image: url('${imagenSobreTrasera}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;`}
         >
           <img
-            src={ImagenSobreTrasera}
+            src={imagenSobreTrasera}
             class="w-full h-full object-contain mix-blend-multiply opacity-80"
             loading="eager" decoding="sync"
           />
         </div>
 
         <div
-          id="TarjetaInvitacion"
+          id="tarjetaInvitacion"
           class="absolute left-1/2 -translate-x-1/2 bg-white z-10 shadow-2xl overflow-hidden border-6 border-white rounded-lg will-change-transform"
           style="width: 60%; aspect-ratio: 9/16; top: -20%; transform: scale(0.4);"
         >
           <img
-            src={FotoUrl}
+            src={fotoUrl}
             class="w-full h-full object-cover"
             alt="Invitación"
             loading="eager" decoding="sync"
@@ -67,31 +67,31 @@ const ImagenSobreSello = `${Ruta}/EnvelopSeal.webp`;
 
         <div
           class={`absolute inset-0 z-20 drop-shadow-2xl`}
-          style={`background-color: ${ColorSobre}; mask-image: url('${ImagenSobreFrontal}'); -webkit-mask-image: url('${ImagenSobreFrontal}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;`}
+          style={`background-color: ${colorSobre}; mask-image: url('${imagenSobreFrontal}'); -webkit-mask-image: url('${imagenSobreFrontal}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;`}
         >
           <img
-            src={ImagenSobreFrontal}
+            src={imagenSobreFrontal}
             class="w-full h-full object-contain mix-blend-multiply"
             loading="eager" decoding="sync"
           />
         </div>
 
         <div
-          id="ContenedorSolapa"
+          id="contenedorSolapa"
           class="absolute inset-0 z-30 [transform-origin:center_65px] [transform-style:preserve-3d] will-change-transform"
         >
           <div
             class={`absolute inset-0`}
-            style={`background-color: ${ColorSobre}; mask-image: url('${ImagenSobreSolapa}'); -webkit-mask-image: url('${ImagenSobreSolapa}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;`}
+            style={`background-color: ${colorSobre}; mask-image: url('${imagenSobreSolapa}'); -webkit-mask-image: url('${imagenSobreSolapa}'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;`}
           >
             <img
-              src={ImagenSobreSolapa}
+              src={imagenSobreSolapa}
               class="w-full h-full object-contain mix-blend-multiply"
               loading="eager" decoding="sync"
             />
           </div>
           <img
-            src={ImagenSobreSello}
+            src={imagenSobreSello}
             class="absolute left-1/2 -translate-x-1/2 bottom-[2%] w-24 h-24 object-contain z-40 drop-shadow-md"
             loading="eager" decoding="sync"
           />
@@ -107,7 +107,7 @@ const ImagenSobreSello = `${Ruta}/EnvelopSeal.webp`;
   gsap.registerPlugin(ScrollTrigger);
 
   window.addEventListener("load", () => {
-    gsap.to("#TituloPrincipal", {
+    gsap.to("#tituloPrincipal", {
       opacity: 1,
       y: 0, // Devuelve el elemento a su posición original (quita el translate-y-8)
       duration: 1.5, // 1.5 segundos de duración
@@ -117,47 +117,47 @@ const ImagenSobreSello = `${Ruta}/EnvelopSeal.webp`;
   });
 
   // Creamos el selector de medios (como las media queries pero para JS)
-  let SelectorMedios = gsap.matchMedia();
+  let selectorMedios = gsap.matchMedia();
 
-  SelectorMedios.add(
+  selectorMedios.add(
     {
       // Definimos nuestras condiciones
       isDesktop: "(min-width: 1024px)",
       isMobile: "(max-width: 1023px)",
     },
-    (Contexto) => {
+    (contexto) => {
       // Extraemos las condiciones para usarlas
-      const { conditions: Condiciones } = Contexto;
+      const { conditions: condiciones } = contexto;
 
-      if (!Condiciones) return;
+      if (!condiciones) return;
 
-      const { isDesktop: EsEscritorio, isMobile: EsMovil } = Condiciones;
+      const { isDesktop: esEscritorio, isMobile: esMovil } = condiciones;
 
-      const LineaTiempo = gsap.timeline({
+      const lineaTiempo = gsap.timeline({
         scrollTrigger: {
-          trigger: "#ContenedorGlobalScroll",
+          trigger: "#contenedorGlobalScroll",
           start: "top top",
           end: "bottom bottom",
           scrub: 1,
-          pin: "#PanelFijo",
+          pin: "#panelFijo",
           pinSpacing: true,
           anticipatePin: 1,
         },
       });
 
       // --- ANIMACIÓN COMÚN (Solapa) ---
-      LineaTiempo.to("#ContenedorSolapa", {
+      lineaTiempo.to("#contenedorSolapa", {
         rotateX: 170,
         duration: 1.2,
         ease: "power2.inOut",
-      }).set("#TarjetaInvitacion", { zIndex: 50 });
+      }).set("#tarjetaInvitacion", { zIndex: 50 });
 
       // --- ANIMACIÓN DIFERENCIADA (Extracción) ---
-      LineaTiempo.to("#TarjetaInvitacion", {
+      lineaTiempo.to("#tarjetaInvitacion", {
         // Si es PC sube poco (-10vh), si es Móvil sube mucho (-35vh)
-        y: EsEscritorio ? "0vh" : "-35vh",
+        y: esEscritorio ? "0vh" : "-35vh",
         // Si es PC escala menos para que no tape todo
-        scale: EsEscritorio ? 1.1 : 1.3,
+        scale: esEscritorio ? 1.1 : 1.3,
         duration: 1.5,
         ease: "power2.out",
       }).to({}, { duration: 1 });

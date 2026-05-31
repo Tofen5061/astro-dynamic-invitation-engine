@@ -1,40 +1,40 @@
 ---
 //SeccionMusica.astro
 const {
-  AudioUrl = "/CancionBoda.mp3",
-  TextoMusica = "Nuestra Canción",
-  ColorComponente = "bg-[#DE3110]", // Recibimos la clase completa (sobreescribible)
+  audioUrl = "/CancionBoda.mp3",
+  textoMusica = "Nuestra Canción",
+  colorComponente = "bg-[#DE3110]", // Recibimos la clase completa (sobreescribible)
 } = Astro.props;
 ---
 
 <section
-  id="SeccionMusica"
-  class={`relative z-0 overflow-hidden flex flex-col items-center py-12 px-6 w-full ${ColorComponente}`}
+  id="seccionMusica"
+  class={`relative z-0 overflow-hidden flex flex-col items-center py-12 px-6 w-full ${colorComponente}`}
 >
   <!-- Overlay blanco para suavizar el color de fondo -->
   <div class="absolute inset-0 bg-white/90 -z-10"></div>
 
   <h3
-    id="TextoInspirador"
+    id="textoInspirador"
     class="font-DancingScript text-4xl text-gray-800 mb-8 text-center"
   >
-    {TextoMusica}
+    {textoMusica}
   </h3>
 
   <div
-    id="ReproductorCustom"
+    id="reproductorCustom"
     class="w-full max-w-lg flex flex-col items-center gap-6"
   >
-    <audio id="AudioElemento" preload="none">
-      <source src={AudioUrl} type="audio/mpeg" />
+    <audio id="audioElemento" preload="none">
+      <source src={audioUrl} type="audio/mpeg" />
     </audio>
 
     <button
-      id="BotonReproduccion"
-      class={`w-20 h-20 ${ColorComponente} rounded-full flex items-center justify-center text-white shadow-md hover:brightness-90 transition-all active:scale-90`}
+      id="botonReproduccion"
+      class={`w-20 h-20 ${colorComponente} rounded-full flex items-center justify-center text-white shadow-md hover:brightness-90 transition-all active:scale-90`}
     >
       <svg
-        id="IconoPlay"
+        id="iconoPlay"
         xmlns="http://www.w3.org/2000/svg"
         class="w-10 h-10 fill-current"
         viewBox="0 0 24 24"
@@ -42,7 +42,7 @@ const {
         <path d="M8 5v14l11-7z"></path>
       </svg>
       <svg
-        id="IconoPause"
+        id="iconoPause"
         xmlns="http://www.w3.org/2000/svg"
         class="w-10 h-10 fill-current hidden"
         viewBox="0 0 24 24"
@@ -51,14 +51,14 @@ const {
       </svg>
     </button>
 
-    <div id="ContenedorProgreso" class="w-full space-y-2">
+    <div id="contenedorProgreso" class="w-full space-y-2">
       <div
-        id="BarraProgresoBase"
+        id="barraProgresoBase"
         class="relative w-full h-1 bg-gray-100 rounded-full cursor-pointer"
       >
         <div
-          id="BarraProgresoActiva"
-          class={`absolute top-0 left-0 h-full ${ColorComponente} w-0 pointer-events-none`}
+          id="barraProgresoActiva"
+          class={`absolute top-0 left-0 h-full ${colorComponente} w-0 pointer-events-none`}
         >
         </div>
       </div>
@@ -66,77 +66,77 @@ const {
       <div
         class="flex justify-between text-[10px] text-gray-400 font-sans tracking-[0.2em] uppercase"
       >
-        <span id="TiempoActual">0:00</span>
-        <span id="TiempoTotal">0:00</span>
+        <span id="tiempoActual">0:00</span>
+        <span id="tiempoTotal">0:00</span>
       </div>
     </div>
   </div>
 </section>
 
 <script>
-  // Selección de elementos usando UpperCamelCase
-  const AudioElemento = document.getElementById(
-    "AudioElemento"
+  // Selección de elementos usando camelCase
+  const audioElemento = document.getElementById(
+    "audioElemento"
   ) as HTMLAudioElement;
-  const BotonReproduccion = document.getElementById("BotonReproduccion");
-  const IconoPlay = document.getElementById("IconoPlay");
-  const IconoPause = document.getElementById("IconoPause");
-  const BarraProgresoActiva = document.getElementById("BarraProgresoActiva");
-  const BarraProgresoBase = document.getElementById("BarraProgresoBase");
-  const TiempoActual = document.getElementById("TiempoActual");
-  const TiempoTotal = document.getElementById("TiempoTotal");
+  const botonReproduccion = document.getElementById("botonReproduccion");
+  const iconoPlay = document.getElementById("iconoPlay");
+  const iconoPause = document.getElementById("iconoPause");
+  const barraProgresoActiva = document.getElementById("barraProgresoActiva");
+  const barraProgresoBase = document.getElementById("barraProgresoBase");
+  const tiempoActual = document.getElementById("tiempoActual");
+  const tiempoTotal = document.getElementById("tiempoTotal");
 
-  const AlternarEstadoIconos = (EstaPausado: boolean) => {
-    if (EstaPausado) {
-      IconoPlay?.classList.remove("hidden");
-      IconoPause?.classList.add("hidden");
+  const alternarEstadoIconos = (estaPausado: boolean) => {
+    if (estaPausado) {
+      iconoPlay?.classList.remove("hidden");
+      iconoPause?.classList.add("hidden");
     } else {
-      IconoPlay?.classList.add("hidden");
-      IconoPause?.classList.remove("hidden");
+      iconoPlay?.classList.add("hidden");
+      iconoPause?.classList.remove("hidden");
     }
   };
 
-  BotonReproduccion?.addEventListener("click", () => {
-    if (AudioElemento.paused) {
-      AudioElemento.play();
-      AlternarEstadoIconos(false);
+  botonReproduccion?.addEventListener("click", () => {
+    if (audioElemento.paused) {
+      audioElemento.play();
+      alternarEstadoIconos(false);
     } else {
-      AudioElemento.pause();
-      AlternarEstadoIconos(true);
+      audioElemento.pause();
+      alternarEstadoIconos(true);
     }
   });
 
-  AudioElemento.addEventListener("timeupdate", () => {
-    const Porcentaje =
-      (AudioElemento.currentTime / AudioElemento.duration) * 100;
-    if (BarraProgresoActiva) BarraProgresoActiva.style.width = `${Porcentaje}%`;
+  audioElemento.addEventListener("timeupdate", () => {
+    const porcentaje =
+      (audioElemento.currentTime / audioElemento.duration) * 100;
+    if (barraProgresoActiva) barraProgresoActiva.style.width = `${porcentaje}%`;
 
-    const Minutos = Math.floor(AudioElemento.currentTime / 60);
-    const Segundos = Math.floor(AudioElemento.currentTime % 60);
-    if (TiempoActual)
-      TiempoActual.textContent = `${Minutos}:${Segundos.toString().padStart(
+    const minutos = Math.floor(audioElemento.currentTime / 60);
+    const segundos = Math.floor(audioElemento.currentTime % 60);
+    if (tiempoActual)
+      tiempoActual.textContent = `${minutos}:${segundos.toString().padStart(
         2,
         "0"
       )}`;
   });
 
-  AudioElemento.addEventListener("loadedmetadata", () => {
-    const Minutos = Math.floor(AudioElemento.duration / 60);
-    const Segundos = Math.floor(AudioElemento.duration % 60);
-    if (TiempoTotal)
-      TiempoTotal.textContent = `${Minutos}:${Segundos.toString().padStart(
+  audioElemento.addEventListener("loadedmetadata", () => {
+    const minutos = Math.floor(audioElemento.duration / 60);
+    const segundos = Math.floor(audioElemento.duration % 60);
+    if (tiempoTotal)
+      tiempoTotal.textContent = `${minutos}:${segundos.toString().padStart(
         2,
         "0"
       )}`;
   });
 
-  BarraProgresoBase?.addEventListener("click", (Evento) => {
-    const Rectangulo = BarraProgresoBase.getBoundingClientRect();
-    const PosicionX = (Evento as MouseEvent).clientX - Rectangulo.left;
-    const AnchoTotal = Rectangulo.width;
-    const NuevoTiempo = (PosicionX / AnchoTotal) * AudioElemento.duration;
-    AudioElemento.currentTime = NuevoTiempo;
+  barraProgresoBase?.addEventListener("click", (evento) => {
+    const rectangulo = barraProgresoBase.getBoundingClientRect();
+    const posicionX = (evento as MouseEvent).clientX - rectangulo.left;
+    const anchoTotal = rectangulo.width;
+    const nuevoTiempo = (posicionX / anchoTotal) * audioElemento.duration;
+    audioElemento.currentTime = nuevoTiempo;
   });
 
-  AudioElemento.addEventListener("ended", () => AlternarEstadoIconos(true));
+  audioElemento.addEventListener("ended", () => alternarEstadoIconos(true));
 </script>
