@@ -6,66 +6,67 @@ import "@fontsource-variable/playfair-display";
 import CuentaRegresiva from "../components/CuentaRegresiva.astro";
 
 interface Props {
-	Title: string;
-	HeroImageSrc?: string;
-	PositionFocus?: "center" | string;
-	HeroText1?: string;
-	HeroText2?: string;
-	IntroductionMessage: string;
-	FirstColor?: string;
-	SecondColor?: string;
-	ThirdColor?: string;
-	MusicTextColor?: string;
-	MusicSpanColor?: string;
-	MusicSrc?: string;
-	DateText?: string;
-	TargetDate?: string;
-	BackgroundTimerSrc?: string;
-	DirectionText1?: string;
-	DirectionText2?: string;
-	DirectionBackgroundColor?: string;
-	MapsLink?: string;
-	HourText?: string;
-	ConfimationText?: string;
-	ConfirmationBackgroundColor?: string;
-	WhatsappNumber?: string;
-	WhatsappMessage?: string;
-	ConfirmationButtonBackgroundColor?: string;
-	ConfirmationHoverButtonBg?: string;
-	ConfirmationButtonTextColor?: string;
-	ConfirmationHoverButtonTextColor?: string;
+	title: string;
+	heroImageSrc?: string;
+	positionFocus?: "center" | string;
+	heroText1?: string;
+	heroText2?: string;
+	introductionMessage: string;
+	firstColor?: string;
+	secondColor?: string;
+	thirdColor?: string;
+	musicTextColor?: string;
+	musicSpanColor?: string;
+	musicSrc?: string;
+	dateText?: string;
+	targetDate?: string;
+	backgroundTimerSrc?: string;
+	directionText1?: string;
+	directionText2?: string;
+	directionBackgroundColor?: string;
+	mapsLink?: string;
+	hourText?: string;
+	confirmationText?: string;
+	confirmationBackgroundColor?: string;
+	whatsappNumber?: string;
+	whatsappMessage?: string;
+	confirmationButtonBackgroundColor?: string;
+	confirmationHoverButtonBg?: string;
+	confirmationButtonTextColor?: string;
+	confirmationHoverButtonTextColor?: string;
 }
 
 const {
-	Title,
-	HeroImageSrc,
-	HeroText1 = "",
-	HeroText2 = "",
-	IntroductionMessage = "",
-	FirstColor = "#FFFFFF",
-	SecondColor = "#FFFFFF",
-	ThirdColor = "#FFFFFF",
-	MusicTextColor = "#FFFFFF",
-	MusicSpanColor = "#FFFFFF",
-	MusicSrc = "",
-	DateText = "",
-	BackgroundTimerSrc = "/CloudWallpaper.jpeg",
-	TargetDate = "2000-01-01T00:00:00",
-	DirectionText1 = "",
-	DirectionText2 = "",
-	DirectionBackgroundColor = "#FFFFFF",
-	MapsLink = "",
-	HourText = "",
-	ConfimationText = "",
-	ConfirmationBackgroundColor = "#FFFFFF",
-	WhatsappNumber = "",
-	WhatsappMessage = "",
-	ConfirmationButtonBackgroundColor = "#FFFFFF",
-	ConfirmationHoverButtonBg = "#FFFFFF",
-	ConfirmationButtonTextColor = "#000000",
-	ConfirmationHoverButtonTextColor = "#FFFFFF",
+	title,
+	heroImageSrc,
+	positionFocus,
+	heroText1 = "",
+	heroText2 = "",
+	introductionMessage = "",
+	firstColor = "#FFFFFF",
+	secondColor = "#FFFFFF",
+	thirdColor = "#FFFFFF",
+	musicTextColor = "#FFFFFF",
+	musicSpanColor = "#FFFFFF",
+	musicSrc = "",
+	dateText = "",
+	backgroundTimerSrc = "/CloudWallpaper.jpeg",
+	targetDate = "2000-01-01T00:00:00",
+	directionText1 = "",
+	directionText2 = "",
+	directionBackgroundColor = "#FFFFFF",
+	mapsLink = "",
+	hourText = "",
+	confirmationText = "",
+	confirmationBackgroundColor = "#FFFFFF",
+	whatsappNumber = "",
+	whatsappMessage = "",
+	confirmationButtonBackgroundColor = "#FFFFFF",
+	confirmationHoverButtonBg = "#FFFFFF",
+	confirmationButtonTextColor = "#000000",
+	confirmationHoverButtonTextColor = "#FFFFFF",
 } = Astro.props;
-const CantidadCaracteres = HeroText1.length;
+const cantidadCaracteres = heroText1.length;
 ---
 
 <!DOCTYPE html>
@@ -73,24 +74,24 @@ const CantidadCaracteres = HeroText1.length;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<title>{Title}</title>
+		<title>{title}</title>
 	</head>
 	<body>
 		<div class="HeroContainer">
-			<img class="HeroImg" src={HeroImageSrc} alt="Invitation Image" />
+			<img class="HeroImg" src={heroImageSrc} alt="Invitation Image" />
 
 			<div class="HeroDarknessLayer"></div>
 		</div>
 
-		<div class="HeroNameContainer" style={`--chars: ${CantidadCaracteres};`}>
+		<div class="HeroNameContainer" style={`--chars: ${cantidadCaracteres};`}>
 			<h1 class="HeroName" id="HeroText1">
-				{HeroText1}
+				{heroText1}
 			</h1>
-			<h2 class="HeroName" id="HeroText2">{HeroText2}</h2>
+			<h2 class="HeroName" id="HeroText2">{heroText2}</h2>
 		</div>
 
 		<div class="IntroductionMessage">
-			<h3>{IntroductionMessage}</h3>
+			<h3>{introductionMessage}</h3>
 		</div>
 
 		<div class="MusicDiv">
@@ -98,14 +99,14 @@ const CantidadCaracteres = HeroText1.length;
 				DALE <span class="MusicSpan">PLAY</span> A LA MUSICA
 			</h1>
 			<audio loop controls preload="none">
-				<source src={MusicSrc} type="audio/mpeg" />
+				<source src={musicSrc} type="audio/mpeg" />
 			</audio>
 		</div>
 
 		<CuentaRegresiva 
-			DateText={DateText} 
-			TargetDate={TargetDate} 
-			BackgroundTimerSrc={BackgroundTimerSrc} 
+			dateText={dateText} 
+			targetDate={targetDate} 
+			backgroundTimerSrc={backgroundTimerSrc} 
 		/>
 
 		<section class="direccion">
@@ -118,12 +119,12 @@ const CantidadCaracteres = HeroText1.length;
 			</div>
 
 			<h1 class="direccion_lugar">Lugar</h1>
-			<h1>{DirectionText1} <br /> {DirectionText2}</h1>
+			<h1>{directionText1} <br /> {directionText2}</h1>
 			<h1 class="direccion_hora_text">Hora</h1>
-			<h1 class="direccion_hora">{HourText}</h1>
+			<h1 class="direccion_hora">{hourText}</h1>
 
 			<div class="button_container">
-				<a href={MapsLink}
+				<a href={mapsLink}
 					><button class="button_como_llegar">COMO LLEGAR</button>
 				</a>
 			</div>
@@ -143,31 +144,31 @@ const CantidadCaracteres = HeroText1.length;
 				</h1>
 			</div>
 
-			<a href={`https://wa.me/${WhatsappNumber}?text=${WhatsappMessage}`}
+			<a href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
 				><button class="Whatsapp_button"> Confirmar Asistencia</button>
 			</a>
 		</section>
 
 		<style
 			define:vars={{
-				PositionFocus: Astro.props.PositionFocus,
-				FirstColor: Astro.props.FirstColor,
-				SecondColor: Astro.props.SecondColor,
-				ThirdColor: Astro.props.ThirdColor,
-				MusicTextColor: Astro.props.MusicTextColor,
-				MusicSpanColor: Astro.props.MusicSpanColor,
-				BackgroundTimerSrc: `url(${BackgroundTimerSrc})`,
-				DirectionBackgroundColor: Astro.props.DirectionBackgroundColor,
+				PositionFocus: Astro.props.positionFocus,
+				FirstColor: Astro.props.firstColor,
+				SecondColor: Astro.props.secondColor,
+				ThirdColor: Astro.props.thirdColor,
+				MusicTextColor: Astro.props.musicTextColor,
+				MusicSpanColor: Astro.props.musicSpanColor,
+				backgroundTimerSrc: `url(${backgroundTimerSrc})`,
+				DirectionBackgroundColor: Astro.props.directionBackgroundColor,
 				ConfirmationBackgroundColor:
-					Astro.props.ConfirmationBackgroundColor,
+					Astro.props.confirmationBackgroundColor,
 				ConfirmationButtonBackgroundColor:
-					Astro.props.ConfirmationButtonBackgroundColor,
+					Astro.props.confirmationButtonBackgroundColor,
 				ConfirmationHoverButtonBg:
-					Astro.props.ConfirmationHoverButtonBg,
+					Astro.props.confirmationHoverButtonBg,
 				ConfirmationButtonTextColor:
-					Astro.props.ConfirmationButtonTextColor,
+					Astro.props.confirmationButtonTextColor,
 				ConfirmationHoverButtonTextColor:
-					Astro.props.ConfirmationHoverButtonTextColor,
+					Astro.props.confirmationHoverButtonTextColor,
 			}}
 		>
 			html,
