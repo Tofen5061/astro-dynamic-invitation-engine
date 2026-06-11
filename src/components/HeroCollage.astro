@@ -1,0 +1,60 @@
+---
+//HeroCollage.astro
+
+interface Props {
+  heroTitle: string;
+  backgroundColor?: string;
+  backgroundImage?: string;
+  backgroundImageFocus?: string;
+  princessImageSrc: string;
+  tiaraImageSrc?: string;
+}
+
+const { 
+  heroTitle, 
+  backgroundColor = 'transparent', 
+  backgroundImage,
+  backgroundImageFocus = 'center',
+  princessImageSrc,
+  tiaraImageSrc
+} = Astro.props;
+
+const inlineStyles = {
+  backgroundColor: backgroundColor,
+  backgroundImage: backgroundImage ? `url(${backgroundImage})` : 'none',
+  backgroundPosition: backgroundImageFocus,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat'
+};
+---
+
+<section style={inlineStyles} class="relative w-full min-h-[100dvh] overflow-hidden p-0 m-0 gap-1 antialiased flex items-center justify-center">
+  
+  <slot name="decoraciones" />
+
+  <div class="relative z-10 flex flex-col md:flex-row items-center justify-center w-full max-w-6xl pointer-events-none mt-10 md:mt-0">
+    
+    <div class="relative z-10 flex flex-col items-center mr-35 -mb-20 md:-mb-0 md:-mr-32">
+      
+      {tiaraImageSrc && (
+        <div class="absolute -top-20 md:-top-24 left-3/4 -translate-x-1/2 w-[6rem] md:w-[9rem] z-20 drop-shadow-md opacity-0 animate-pop-in delay-[600ms]">
+          <img src={tiaraImageSrc} alt="Tiara decorativa" class="w-full h-auto" />
+        </div>
+      )}
+
+      <h1 class="text-[3rem] md:text-[8rem] font-DancingScript font-normal leading-[1.1] text-[#1D1D1B] text-center opacity-0 animate-fade-in-up"
+        set:html={heroTitle}
+      />
+    </div>
+
+    <div class="relative z-30 w-[90vw] max-w-[380px] md:max-w-[600px] ml-30 "> 
+      <img 
+        src={princessImageSrc} 
+        alt="Princesa" 
+        class="w-full h-auto object-contain drop-shadow-2xl opacity-0 animate-fade-in-right delay-300" 
+      />
+    </div>
+
+  </div>
+
+</section>

@@ -1,22 +1,30 @@
 ---
-//SeccionMusica.astro
+// src/components/MusicSectionStandard.astro
+
+interface Props {
+  audioUrl?: string;
+  textoMusica?: string;
+  colorFondo?: string;
+  colorAcento?: string;
+  colorTexto?: string;
+}
+
 const {
   audioUrl = "/CancionBoda.mp3",
   textoMusica = "Nuestra Canción",
-  colorComponente = "bg-[#DE3110]", // Recibimos la clase completa (sobreescribible)
+  colorFondo = "#ffffff",
+  colorAcento = "#DE3110",
+  colorTexto = "#1f2937",
 } = Astro.props;
 ---
 
 <section
   id="seccionMusica"
-  class={`relative z-0 overflow-hidden flex flex-col items-center py-12 px-6 w-full ${colorComponente}`}
+  class="seccion-musica relative z-0 overflow-hidden flex flex-col items-center py-12 px-6 w-full"
 >
-  <!-- Overlay blanco para suavizar el color de fondo -->
-  <div class="absolute inset-0 bg-white/90 -z-10"></div>
-
   <h3
     id="textoInspirador"
-    class="font-DancingScript text-4xl text-gray-800 mb-8 text-center"
+    class="texto-inspirador font-DancingScript text-4xl mb-8 text-center"
   >
     {textoMusica}
   </h3>
@@ -31,7 +39,7 @@ const {
 
     <button
       id="botonReproduccion"
-      class={`w-20 h-20 ${colorComponente} rounded-full flex items-center justify-center text-white shadow-md hover:brightness-90 transition-all active:scale-90`}
+      class="boton-reproduccion w-20 h-20 rounded-full flex items-center justify-center text-white shadow-md transition-all active:scale-90"
     >
       <svg
         id="iconoPlay"
@@ -54,11 +62,11 @@ const {
     <div id="contenedorProgreso" class="w-full space-y-2">
       <div
         id="barraProgresoBase"
-        class="relative w-full h-1 bg-gray-100 rounded-full cursor-pointer"
+        class="barra-progreso-base relative w-full h-1 rounded-full cursor-pointer"
       >
         <div
           id="barraProgresoActiva"
-          class={`absolute top-0 left-0 h-full ${colorComponente} w-0 pointer-events-none`}
+          class="barra-progreso-activa absolute top-0 left-0 h-full w-0 pointer-events-none"
         >
         </div>
       </div>
@@ -72,6 +80,36 @@ const {
     </div>
   </div>
 </section>
+
+<style define:vars={{
+  colorFondo,
+  colorAcento,
+  colorTexto
+}}>
+  .seccion-musica {
+    background-color: var(--colorFondo);
+  }
+
+  .texto-inspirador {
+    color: var(--colorTexto);
+  }
+
+  .boton-reproduccion {
+    background-color: var(--colorAcento);
+  }
+
+  .boton-reproduccion:hover {
+    filter: brightness(0.9);
+  }
+
+  .barra-progreso-base {
+    background-color: rgba(156, 163, 175, 0.2);
+  }
+
+  .barra-progreso-activa {
+    background-color: var(--colorAcento);
+  }
+</style>
 
 <script>
   // Selección de elementos usando camelCase

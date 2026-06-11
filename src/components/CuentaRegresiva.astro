@@ -1,14 +1,24 @@
 ---
+// src/components/CuentaRegresiva.astro
+
 interface Props {
   dateText?: string;
   targetDate?: string;
   backgroundTimerSrc?: string;
+  colorFondo?: string;
+  colorTexto?: string;
+  colorAcento?: string;
+  esModoOscuro?: boolean;
 }
 
 const {
   dateText = "",
   targetDate = "2000-01-01T00:00:00",
   backgroundTimerSrc = "",
+  colorFondo = "#111111",
+  colorTexto = "#ffffff",
+  colorAcento = "#DE3110",
+  esModoOscuro = true,
 } = Astro.props;
 ---
 
@@ -35,11 +45,17 @@ const {
     backgroundImage: backgroundTimerSrc
       ? `url('${backgroundTimerSrc}')`
       : "none",
+    colorFondo,
+    colorTexto,
+    colorAcento,
+    blendMode: esModoOscuro ? "multiply" : "screen",
   }}
 >
   .Timer {
     text-align: center;
     background-image: var(--backgroundImage);
+    background-color: var(--colorFondo);
+    background-blend-mode: var(--blendMode);
     background-size: cover;
     background-position: center;
     min-height: 20vh;
@@ -50,6 +66,7 @@ const {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: var(--colorTexto);
   }
 
   .Timer h1,
@@ -70,11 +87,16 @@ const {
     font-family: "Dancing Script", cursive;
     font-size: 2rem;
     margin-top: 1rem;
+    color: var(--colorAcento);
   }
 
   .temporizador {
     font-size: 3rem;
     font-family: "Dancing Script", cursive;
+  }
+
+  .temporizador span {
+    color: var(--colorAcento);
   }
 
   .temporizador_detalles {
@@ -86,6 +108,7 @@ const {
     gap: 1.2rem;
     font-size: 2rem;
     font-family: "Dancing Script", cursive;
+    color: var(--colorTexto);
   }
 
   #segundosDetalles {
@@ -110,15 +133,18 @@ const {
     // Cálculos
     const diasCalculados = Math.floor(diferencia / (1000 * 60 * 60 * 24));
     const horasCalculadas = Math.floor(
-      (diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      (diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
     );
-    const minutosCalculados = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+    const minutosCalculados = Math.floor(
+      (diferencia % (1000 * 60 * 60)) / (1000 * 60),
+    );
     const segundosCalculados = Math.floor((diferencia % (1000 * 60)) / 1000);
 
     // Actualizar con seguridad (verificando que existan y convirtiendo a String)
     const establecerElemento = (id, val) => {
       const elemento = document.getElementById(id);
-      if (elemento) elemento.textContent = String(Math.max(0, val)).padStart(2, "0");
+      if (elemento)
+        elemento.textContent = String(Math.max(0, val)).padStart(2, "0");
     };
 
     if (diferencia > 0) {

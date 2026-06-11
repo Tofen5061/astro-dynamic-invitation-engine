@@ -1,23 +1,23 @@
 ---
-import '@fontsource/dancing-script';
-import '@fontsource-variable/bodoni-moda';
-import '@fontsource/aboreto';
-import '@fontsource-variable/playfair-display';
-import '../styles/global.css';
+import "@fontsource/dancing-script";
+import "@fontsource-variable/bodoni-moda";
+import "@fontsource/aboreto";
+import "@fontsource-variable/playfair-display";
+import "../styles/global.css";
 
 // Importamos los componentes
-import AnimatedEnvelope from '../components/AnimatedEnvelop.astro';
-import SeccionMusica from '../components/MusicSectionStandard.astro';
-import CuentaRegresiva from '../components/CuentaRegresiva.astro';
-import CalendarioEvento from '../components/CalendarioEvento.astro';
+import AnimatedEnvelope from "../components/AnimatedEnvelop.astro";
+import SeccionMusica from "../components/MusicSectionStandard.astro";
+import CuentaRegresiva from "../components/CuentaRegresiva.astro";
+import CalendarioEvento from "../components/CalendarioEvento.astro";
 
 // AQUÍ ESTÁ EL IMPORT FALTANTE: Traemos tu generador con su nombre real
-import { generarPaletaSaaS } from '../utils/ColorPaletteGenerator.js';
+import { generarPaletaSaaS } from "../utils/ColorPaletteGenerator.js";
 
 interface Props {
     // Datos de la Página
     title: string;
-    
+
     // Datos del Envelope (Sobre)
     tituloNombre: string;
     colorSobre: string; // Este es el HEX principal que usaremos como base
@@ -32,24 +32,25 @@ interface Props {
     targetDate?: string;
     backgroundTimerSrc?: string;
 
-    // ELIMINÉ: FechaEvento y fondo de la interfaz porque el calendario usará TargetDate
-    // y los colores se generarán automáticamente aquí dentro, no se pedirán por fuera.
+    // Modo de visualización (claro/oscuro)
+    esModoOscuro?: boolean;
 }
 
-const { 
-    title, 
-    tituloNombre, 
-    colorSobre, 
+const {
+    title,
+    tituloNombre,
+    colorSobre,
     fotoPrincipal,
     audioUrl,
     textoMusica,
     dateText = "01 Enero 2000",
     targetDate = "2000-01-01T00:00:00",
-    backgroundTimerSrc = ""
+    backgroundTimerSrc = "",
+    esModoOscuro = false,
 } = Astro.props;
 
-// AQUÍ OCURRE LA MAGIA: Ejecutamos el motor de color usando el colorSobre
-const paleta = generarPaletaSaaS(colorSobre);
+// AQUÍ OCURRE LA MAGIA: Ejecutamos el motor de color usando el colorSobre y el selector de modo
+const paletaColores = generarPaletaSaaS(colorSobre, esModoOscuro);
 ---
 
 <!doctype html>
@@ -61,36 +62,47 @@ const paleta = generarPaletaSaaS(colorSobre);
         <link rel="preload" as="image" href={fotoPrincipal} />
     </head>
     <body class="bg-white">
-
         <AnimatedEnvelope 
             tituloNombre={tituloNombre}
             colorSobre={colorSobre}
             fotoUrl={fotoPrincipal}
+            esModoOscuro={esModoOscuro}
         />
 
         <SeccionMusica 
-            audioUrl={audioUrl}
-            textoMusica={textoMusica}
+            audioUrl={audioUrl} 
+            textoMusica={textoMusica} 
+            colorFondo={paletaColores.fondoSecundario}
+            colorAcento={paletaColores.acentoPrincipal}
+            colorTexto={paletaColores.textoPrincipal}
         />
 
-        <CuentaRegresiva 
+        <CuentaRegresiva
             dateText={dateText}
             targetDate={targetDate}
             backgroundTimerSrc={backgroundTimerSrc}
+            colorFondo={paletaColores.fondoPrincipal}
+            colorTexto={paletaColores.textoPrincipal}
+            colorAcento={paletaColores.acentoPrincipal}
+            esModoOscuro={esModoOscuro}
         />
 
         <CalendarioEvento
             fechaEvento={targetDate}
-            fondo={paleta.fondo}
-            borde={paleta.borde}
-            acento={paleta.acento}
-            textoAcento={paleta.textoAcento}
-            textoFondo={paleta.textoFondo}
+            fondoPrincipal={paletaColores.fondoPrincipal}
+            fondoSecundario={paletaColores.fondoSecundario}
+            fondoTerciario={paletaColores.fondoTerciario}
+            bordeSutil={paletaColores.bordeSutil}
+            bordeFuerte={paletaColores.bordeFuerte}
+            acentoPrincipal={paletaColores.acentoPrincipal}
+            acentoHover={paletaColores.acentoHover}
+            textoPrincipal={paletaColores.textoPrincipal}
+            textoSecundario={paletaColores.textoSecundario}
+            textoAcento={paletaColores.textoAcento}
         />
 
         <main>
             <slot />
         </main>
-
     </body>
 </html>

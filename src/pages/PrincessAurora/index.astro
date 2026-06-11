@@ -1,0 +1,154 @@
+---
+// PrincesaAurora/index.astro
+
+import Layout from '../../layouts/BlankLayout.astro';
+import HeroCollage from '../../components/HeroCollage.astro';
+import Music from '../../components/MusicSectionStandard.astro';
+import Timer from '../../components/CuentaRegresiva.astro';
+import Calendar from '../../components/CalendarioEvento.astro';
+
+import { generarPaletaSaaS } from '../../utils/ColorPaletteGenerator.js';
+
+const colorBaseCalendario = "#FEAED9"; // El color de tu temática
+const paletaCalendario = generarPaletaSaaS(colorBaseCalendario, false);
+
+
+---
+
+<Layout pageTitle="Princess Aurora 15 Años">
+
+  <HeroCollage 
+    heroTitle="Mis <span class='font-extrabold text-[5.5rem]'>15</span><br/>Quince"
+    backgroundColor="#f8e1f4"
+    backgroundImage="/AuroraInvitation/PrincessAuroraHeroBg.webp"
+    backgroundImageFocus="90%"
+    princessImageSrc="/AuroraInvitation/PrincesaAurora-Photoroom.webp"
+    tiaraImageSrc="/AuroraInvitation/TiaraPrincesaAurora-Photoroom.webp"
+  >
+    
+  
+  
+  <div slot="decoraciones" class="pointer-events-none absolute inset-0 w-full h-full z-40">
+        <img 
+            src="/AuroraInvitation/RightRose-Photoroom.webp" 
+            alt="Decoración 1" 
+            class="absolute top-0 -right-15  w-85 animate-float animate-fade-in-up"
+        />
+
+        <img 
+            src="/AuroraInvitation/BottomLDecoration-Photoroom.webp" 
+            alt="Decoración 2" 
+            class="absolute bottom-0 -left-0 w-96 animate-float animation-delay-2000 animate-fade-in-up "
+        />
+
+    </div>
+
+
+  </HeroCollage>
+
+  <Music
+    audioUrl="/AuroraInvitation/EresTuElPrincipeAzul.mp3"
+    textoMusica="¡Disfruta de la música de mi fiesta!"
+    colorFondo="#FEBAC6"
+    colorAcento="#f46e80"
+    colorTexto="#333"
+  />
+
+ <!-- seccion palabras/frase bonita -->
+
+    <section class="relative w-full min-h-[50dvh] bg-[url('/AuroraInvitation/PrincessAuroraBackground.webp')] bg-cover bg-center flex flex-col items-center justify-center p-5 overlay-dark ">
+
+        <div  class="max-w-3xl text-center pt-10">
+        <h2 class="text-3xl md:text-4 xl font-DancingScript text-[#ffffff] text-shadow-xs mb-6 animate-fade-in-up">
+            “Como en los cuentos más hermosos, cada sueño tiene su momento para hacerse realidad.” <br/><br/>
+
+            Hoy, al llegar a esta etapa tan especial de mi vida, deseo compartir contigo una noche llena de magia,y emociones inolvidables. <br/><br/>
+                    
+            Con la delicadeza de una rosa encantada y el brillo de un sueño cumplido, te invito a celebrar mis 15 años.
+                    
+            Será una noche para bailar, sonreír y crear recuerdos que permanecerán para siempre en nuestros corazones.
+        </h2>
+        </div>
+    </section>
+
+    <!-- Seccion Padres y niña -->
+
+    <section class=" relative w-full min-h-[50dvh] bg-linear-to-br from-pink-200 to-pink-300 bg-cover bg-center flex flex-col items-center justify-center p-5 ">
+
+          <img 
+            src="/AuroraInvitation/FlowerCorner.webp" 
+            alt="Decoración 1" 
+            class="absolute top-0 left-0 w-60 md:w-80"
+        />
+
+        <div  class=" inset-0 flex flex-col items-center justify-center p-4 max-w-4xl text-center">
+
+            <h2 class="text-4xl md:text-4xl font-DancingScript leading-relaxed text-[#000000] text-shadow-xs  mt-18 animate-fade-in-up">
+                Walkiria Martínez <br/>
+                Walter Martínez <br/>
+                María Lourdes <br/>
+                <span class="text-2xl ">Tienen el gusto de invitarte</span>
+            </h2>
+
+            <img 
+                src="/AuroraInvitation/PadresAurora-Photoroom.webp" 
+                alt="Decoración 1" 
+                class="w-80 md:w-96 opacity-80"
+            />
+
+            <h2 class="text-4xl md:text-4xl font-DancingScript leading-relaxed text-[#000000] text-shadow-xs  animate-fade-in-up">
+                A los <span class="text-[5.5rem] font-extrabold">15</span> años de <br/>
+                Su amada Princesa
+            <h2/>
+
+            <h2 class="text-6xl md:text-6xl font-DancingScript leading-relaxed text-[#FFD700] font-bold [text-shadow:_1px_1px_0px_#735613,_-1px_-1px_0px_#735613,_1px_-1px_0px_#735613,_-1px_1px_0px_#735613] drop-shadow-md   animate-fade-in-up">
+                Camila Joana
+            </h2>
+
+             <img 
+                src="/AuroraInvitation/AuroraCircle-Photoroom.webp" 
+                alt="Decoración 1" 
+                class="w-80 md:w-96 opacity-80"
+            />
+        </div>
+    </section>
+
+    <Timer 
+        dateText=""
+        targetDate="2026-07-04T18:30:00"
+        backgroundTimerSrc="/CloudWallpaper.jpeg"
+        colorFondo="#FEA9D7"
+        colorTexto="#f7319b"
+        colorAcento="#f7319b"
+        esModoOscuro={false}
+    />
+
+    <Calendar 
+        fechaEvento="2026-07-04T18:30:00"
+        {...paletaCalendario}
+    />
+
+
+    <section class=" bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center p-5">
+        <h2 class="text-4xl md:text-4xl font-DancingScript text-[#E3027A] text-shadow-xs mb-10">
+                6:30 PM
+        </h2>
+
+        <img 
+            src="/AuroraInvitation/ubicacionIcon.webp" 
+            alt="ubicacion" 
+            class="w-15 md:w-25 "
+        />
+
+        <h2 class="text-5xl md:text-4xl font-DancingScript text-[#000000] text-shadow-xs mt-5 text-center   ">
+                Lugar del Evento
+        </h2>   
+
+         <h2 class="text-2xl mt-5 text-center text-[#b8005f] text-shadow-sm p-5 font-aboreto font-bold">Planta baja de Dilectus discoteque, Chinandega</h2>
+
+
+
+
+    </section>
+
+</Layout>

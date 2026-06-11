@@ -1,9 +1,20 @@
+
+/* global.css */
+
 @import "tailwindcss";
 
 @theme {
   /* Esto permite usar perspective en Tailwind v4 */
   --perspective-1000: 1000px;
   --font-DancingScript: 'Dancing Script', cursive;
+  --font-PlayfairDisplay: 'Playfair Display Variable', serif;
+  --font-BodoniModa: 'Bodoni Moda Variable', serif;
+  --font-aboreto: 'Aboreto', cursive;
+  --animate-fade-in-up: fade-in-up 1s ease-out forwards;
+  --animate-fade-in-right: fade-in-right 1s ease-out forwards;
+  --animate-pop-in: pop-in 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+
+  
 }
 
 .perspective {
@@ -12,4 +23,38 @@
 
 .preserve-3d {
   transform-style: preserve-3d;
+}
+
+.overlay-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Ajusta el 0.5 para más o menos oscuridad */
+  z-index: 0;
+}
+
+/* Importante: para que el texto no quede debajo de la capa oscura */
+.overlay-dark > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+
+
+/* Definimos qué sucede en cada fotograma */
+ @keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-right {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pop-in {
+  0% { opacity: 0; transform:  scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
 }
