@@ -6,6 +6,7 @@ import HeroCollage from '../../components/HeroCollage.astro';
 import Music from '../../components/MusicSectionStandard.astro';
 import Timer from '../../components/CuentaRegresiva.astro';
 import Calendar from '../../components/CalendarioEvento.astro';
+import LinkButton from '../../components/LinkButton.astro';
 
 import { generarPaletaSaaS } from '../../utils/ColorPaletteGenerator.js';
 
@@ -127,10 +128,11 @@ const paletaCalendario = generarPaletaSaaS(colorBaseCalendario, false);
         fechaEvento="2026-07-04T18:30:00"
         {...paletaCalendario}
     />
+ 
+    <!-- Seccion Ubicacion -->
 
-
-    <section class=" bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center p-5">
-        <h2 class="text-4xl md:text-4xl font-DancingScript text-[#E3027A] text-shadow-xs mb-10">
+    <section class=" bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center">
+        <h2 class="text-5xl md:text-4xl font-DancingScript text-[#E3027A] text-shadow-xs mb-10">
                 6:30 PM
         </h2>
 
@@ -146,9 +148,31 @@ const paletaCalendario = generarPaletaSaaS(colorBaseCalendario, false);
 
          <h2 class="text-2xl mt-5 text-center text-[#b8005f] text-shadow-sm p-5 font-aboreto font-bold">Planta baja de Dilectus discoteque, Chinandega</h2>
 
+        <LinkButton 
+            url="https://goo.gl/maps/1Zt7n9sH2mL2"
+            buttonText="Ir a Google Maps"
+        />
+    </section>
 
+    <!-- Seccion Vestimenta -->
 
+    <section class="bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center">
+        <h2 class="text-5xl md:text-4xl text-center font-DancingScript text-[#E3027A] text-shadow-xs mb-10">
+                Código de Vestimenta
+        </h2>
+
+        <img 
+            src="/AuroraInvitation/CodigoVestimenta-Photoroom.webp" 
+            alt="dress code" 
+            class="w-85 border-1 border-[#4a0027]  p-2"
+        />
+
+        <h2 class="text-2xl mt-5 text-center text-[#b8005f] text-shadow-sm p-5 font-aboreto font-bold">Formal - Elegante</h2>
+        
+        <h2 class="text-xl mt-5 text-center text-[#b8005f] text-shadow-sm p-5 font-aboreto font-extrabold">Colores Permitidos: <br> <span class="font-bold text-[#000000]">Negro</span>,<span class="font-bold text-[#2100b3]"> Azul</span>, <span class="font-bold text-[#D3AC7B]"> Beige</span></h2>
 
     </section>
+
+
 
 </Layout>
