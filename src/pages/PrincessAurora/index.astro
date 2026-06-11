@@ -12,6 +12,7 @@ import { generarPaletaSaaS } from '../../utils/ColorPaletteGenerator.js';
 
 const colorBaseCalendario = "#FEAED9"; // El color de tu temática
 const paletaCalendario = generarPaletaSaaS(colorBaseCalendario, false);
+const nombreQuinceañera = "Camila Joana";
 
 
 ---
@@ -84,11 +85,15 @@ const paletaCalendario = generarPaletaSaaS(colorBaseCalendario, false);
 
         <div  class=" inset-0 flex flex-col items-center justify-center p-4 max-w-4xl text-center">
 
-            <h2 class="text-4xl md:text-4xl font-DancingScript leading-relaxed text-[#000000] text-shadow-xs  mt-18 animate-fade-in-up">
+            <h2 class="text-4xl md:text-4xl font-DancingScript leading-relaxed text-[#FF00AC] text-shadow-xs  mt-18 animate-fade-in-up">
+               <span class=" text-[#5c003d] ">Su mamá</span><br/>
                 Walkiria Martínez <br/>
+
+                <span class=" text-[#5c003d] ">y sus abuelos</span><br/>
+
                 Walter Martínez <br/>
                 María Lourdes <br/>
-                <span class="text-2xl ">Tienen el gusto de invitarte</span>
+                <span class="text-2xl text-black ">Tienen el gusto de invitarte</span>
             </h2>
 
             <img 
@@ -102,8 +107,8 @@ const paletaCalendario = generarPaletaSaaS(colorBaseCalendario, false);
                 Su amada Princesa
             <h2/>
 
-            <h2 class="text-6xl md:text-6xl font-DancingScript leading-relaxed text-[#FFD700] font-bold [text-shadow:_1px_1px_0px_#735613,_-1px_-1px_0px_#735613,_1px_-1px_0px_#735613,_-1px_1px_0px_#735613] drop-shadow-md   animate-fade-in-up">
-                Camila Joana
+            <h2 class="text-6xl md:text-6xl font-DancingScript leading-relaxed text-[#FF1493] font-bold  drop-shadow-sm  animate-fade-in-up">
+                {nombreQuinceañera}
             </h2>
 
              <img 
@@ -149,7 +154,7 @@ const paletaCalendario = generarPaletaSaaS(colorBaseCalendario, false);
          <h2 class="text-2xl mt-5 text-center text-[#b8005f] text-shadow-sm p-5 font-aboreto font-bold">Planta baja de Dilectus discoteque, Chinandega</h2>
 
         <LinkButton 
-            url="https://goo.gl/maps/1Zt7n9sH2mL2"
+            url="https://www.google.com/maps/place/Dilectus/@12.6193956,-87.1141251,16.5z/data=!4m6!3m5!1s0x8f70f1c5191f1c31:0x2d83808018877848!8m2!3d12.6191224!4d-87.1144617!16s%2Fg%2F1ptxz3kzc?entry=ttu&g_ep=EgoyMDI2MDYwOS4wIKXMDSoASAFQAw%3D%3D"
             buttonText="Ir a Google Maps"
         />
     </section>
@@ -169,9 +174,96 @@ const paletaCalendario = generarPaletaSaaS(colorBaseCalendario, false);
 
         <h2 class="text-2xl mt-5 text-center text-[#b8005f] text-shadow-sm p-5 font-aboreto font-bold">Formal - Elegante</h2>
         
-        <h2 class="text-xl mt-5 text-center text-[#b8005f] text-shadow-sm p-5 font-aboreto font-extrabold">Colores Permitidos: <br> <span class="font-bold text-[#000000]">Negro</span>,<span class="font-bold text-[#2100b3]"> Azul</span>, <span class="font-bold text-[#D3AC7B]"> Beige</span></h2>
+        <h2 class="text-2xl mt-2 text-center text-[#b8005f] text-shadow-sm p-5 font-aboreto font-extrabold">Colores Permitidos: <br> <span class="font-bold text-[#000000]">Negro</span>,<span class="font-bold text-[#2100b3]"> Azul</span>, <span class="font-bold text-[#D3AC7B]"> Beige</span></h2>
+
+        <h2 class="text-2xl mt-2 text-center text-[#b8005f] text-shadow-sm p-5 font-aboreto font-extrabold">Colores Prohibidos: <br> <br> <span class="font-bold text-[#ff009d] bg-white p-5 rounded-full">Rosa</span></h2>
+           
+        
+        <div class="w-85 h-85  border-1 border-[#4a0027] p-5 mt-3 bg-white ">
+            <img 
+            src="/AuroraInvitation/ProhibitedColor.png" 
+            alt="dress code" 
+            class="w-full h-full object-cover object-center"
+        />
+        </div>
+        
+    </section>
+
+    <!-- seccion muestra de cariño en sobre -->
+
+    <section class="bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center">
+
+        <h2 class="text-5xl md:text-4xl font-DancingScript text-[#f7319b] text-shadow-xs mt-5 text-center   ">
+                Muestras de Cariño <br>
+                <span class="text-[#82094a]">En Sobre</span>
+        </h2> 
+
+
+            <img 
+                src="/AuroraInvitation/SobreAurora-Photoroom.webp" 
+                alt="dress code" 
+                class="w-75 h-auto"
+            />
 
     </section>
+
+    <!-- Seccion Confirmar Asistencia -->
+
+    <section class="bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center">
+
+        <h2 class="text-5xl md:text-4xl font-DancingScript text-[#E3027A] text-shadow-xs mb-10">
+                Confirmar Asistencia
+        </h2>
+
+        <img 
+            src="/charla-telefonica-unscreen.gif" 
+            alt="confirmacion" 
+            class="w-40"
+        />
+
+         <h2 class="text-3xl md:text-4xl font-DancingScript text-[#000000] text-shadow-xs mt-5 text-center   ">
+                ¡Tu presencia es muy importante para mí!
+        </h2>   
+
+         <h2 class="text-xl mt-5 text-center text-[#ca0068] p-5 font-aboreto font-bold">Por favor confirma tu asistencia a continuación</h2>
+
+         <LinkButton 
+            url="https://wa.me/50588888888?text=¡Hola!%20Quiero%20confirmar%20mi%20asistencia%20a%20los%2015%20años%20de%20Camila%20Joana.%20¡Estoy%20emocionado/a%20por%20celebrar%20este%20día%20tan%20especial!"
+            buttonText="Confirmar Asistencia"
+        />
+
+	</section>
+
+    <!-- Seccion Agradecimientos -->
+
+    <section class="bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center" >
+
+        <div class="w-full h-auto flex flex-col md:flex-row justify-center items-center md:items-start">
+
+            <img src="/AuroraInvitation/Aurora2-Photoroom.webp"
+                alt="Agradecimientos Aurora" 
+                class="w-80 h-auto"
+            />
+
+            <h2 class="text-3xl md:text-4xl font-DancingScript text-[#E3027A] text-shadow-xs mt-5 text-center">
+                Tu presencia hará que esta historia sea aún más especial… <br/><br/>
+
+                <span class="text-4xl md:text-5xl text-[#57002f] text-shadow-xs">
+                    Con cariño,<br/><br/>
+                </span>
+
+                <span class="text-5xl md:text-6xl font-DancingScript leading-relaxed text-[#FF1493] font-bold  drop-shadow-xs  animate-fade-in-up">💕 {nombreQuinceañera} 💕</span>
+            </h2>
+
+        </div>
+
+
+
+
+
+
+    </section>
+
 
 
 
