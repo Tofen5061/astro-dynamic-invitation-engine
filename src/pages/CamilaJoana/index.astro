@@ -48,7 +48,7 @@ const nombreQuinceañera = "Camila Joana";
 
   </HeroCollage>  -->
 
-    <section class="w-full h-[90dvh] overflow-hidden bg-[#FEBCE4] flex items-center justify-center">
+    <section class="w-full h-[90dvh] md:h-[100dvh] overflow-hidden bg-[#FEBCE4] flex items-center justify-center">
 
         <video autoplay muted playsinline class=" w-full h-full md:h-[100dvh] md:w-auto object-cover object-center">
         
@@ -63,9 +63,9 @@ const nombreQuinceañera = "Camila Joana";
   <Music
     audioUrl="/AuroraInvitation/EresTuElPrincipeAzul.mp3"
     textoMusica="¡Disfruta de la música de mi fiesta!"
-    colorFondo="#FEBAC6"
-    colorAcento="#f46e80"
-    colorTexto="#333"
+    colorFondo="#FEBCE4"
+    colorAcento="#E3027A"
+    colorTexto="#E3027A"
   />
 
  <!-- seccion palabras/frase bonita -->
@@ -78,7 +78,7 @@ const nombreQuinceañera = "Camila Joana";
 
             Hoy, al llegar a esta etapa tan especial de mi vida, deseo compartir contigo una noche llena de magia,y emociones inolvidables. <br/><br/>
                     
-            Con la delicadeza de una rosa encantada y el brillo de un sueño cumplido, te invito a celebrar mis 15 años.
+            Como la delicadeza de una rosa encantada y el brillo de un sueño cumplido, te invito a celebrar mis 15 años.
                     
             Será una noche para bailar, sonreír y crear recuerdos que permanecerán para siempre en nuestros corazones.
         </h2>
@@ -87,7 +87,20 @@ const nombreQuinceañera = "Camila Joana";
 
     <!-- Seccion Padres y niña -->
 
-    <section class=" relative w-full min-h-[50dvh] bg-linear-to-br from-pink-200 to-pink-300 bg-cover bg-center flex flex-col items-center justify-center p-5 ">
+     <section class="w-full h-[100dvh] overflow-hidden bg-[#FEBCE4] flex items-center justify-center">
+
+        <img 
+            src="/AuroraInvitation/SeccionPadres.webp" 
+            alt="Padres e hija" 
+            draggable="false"
+            class="w-full h-full md:w-auto object-cover object-center pointer-events-none select-none [-webkit-touch-callout:none]"
+        />
+
+     </section>
+
+
+
+   <!-- <section class=" relative w-full min-h-[50dvh] bg-linear-to-br from-pink-200 to-pink-300 bg-cover bg-center flex flex-col items-center justify-center p-5 ">
 
           <img 
             src="/AuroraInvitation/FlowerCorner.webp" 
@@ -129,29 +142,13 @@ const nombreQuinceañera = "Camila Joana";
                 class="w-80 md:w-96 opacity-80"
             />
         </div>
-    </section>
+    </section>  -->
 
-    <Timer 
-        dateText=""
-        targetDate="2026-07-04T18:30:00"
-        backgroundTimerSrc="/CloudWallpaper.jpeg"
-        colorFondo="#FEA9D7"
-        colorTexto="#f7319b"
-        colorAcento="#f7319b"
-        esModoOscuro={false}
-    />
 
-    <Calendar 
-        fechaEvento="2026-07-04T18:30:00"
-        {...paletaCalendario}
-    />
- 
+   
     <!-- Seccion Ubicacion -->
 
-    <section class=" bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center">
-        <h2 class="text-5xl md:text-4xl font-DancingScript text-[#E3027A] text-shadow-xs mb-10">
-                6:30 PM
-        </h2>
+    <section class=" bg-[#ffe0f1] w-full py-10 flex flex-col items-center justify-center">
 
         <img 
             src="/AuroraInvitation/ubicacionIcon.webp" 
@@ -163,7 +160,12 @@ const nombreQuinceañera = "Camila Joana";
                 Lugar del Evento
         </h2>   
 
-         <h2 class="text-2xl mt-5 text-center text-[#b8005f] text-shadow-sm p-5 font-aboreto font-bold">Planta baja de Dilectus discoteque, Chinandega</h2>
+         <h2 class="text-2xl mt-5 text-center text-[#E3027A] text-shadow-sm p-5 font-aboreto font-bold">Planta baja de Dilectus discoteque, Chinandega</h2>
+
+         <h2 class="text-5xl md:text-4xl font-DancingScript text-[#E3027A] text-shadow-xs mt-5 mb-10">
+                6:30 PM
+         </h2>
+
 
         <LinkButton 
             url="https://www.google.com/maps/place/Dilectus/@12.6193956,-87.1141251,16.5z/data=!4m6!3m5!1s0x8f70f1c5191f1c31:0x2d83808018877848!8m2!3d12.6191224!4d-87.1144617!16s%2Fg%2F1ptxz3kzc?entry=ttu&g_ep=EgoyMDI2MDYwOS4wIKXMDSoASAFQAw%3D%3D"
@@ -173,7 +175,7 @@ const nombreQuinceañera = "Camila Joana";
 
     <!-- Seccion Vestimenta -->
 
-    <section class="bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center">
+    <section class="bg-[#ffe0f1] w-full py-10 flex flex-col items-center justify-center">
         <h2 class="text-5xl md:text-4xl text-center font-DancingScript text-[#E3027A] text-shadow-xs mb-10">
                 Código de Vestimenta
         </h2>
@@ -201,11 +203,30 @@ const nombreQuinceañera = "Camila Joana";
         
     </section>
 
+    <Timer 
+        dateText=""
+        targetDate="2026-07-04T18:30:00"
+        backgroundTimerSrc="/CloudWallpaper.jpeg"
+        colorFondo="#FEA9D7"
+        colorTexto="#f7319b"
+        colorAcento="#f7319b"
+        esModoOscuro={false}
+    />
+
+     <Calendar 
+        fechaEvento="2026-07-04T18:30:00"
+        {...paletaCalendario}
+    />
+
+    
+ 
+
     <!-- seccion muestra de cariño en sobre -->
 
-    <section class="bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center">
+    <section class="bg-[#ffe0f1] w-full py-10 flex flex-col items-center justify-center">
 
-        <h2 class="text-5xl md:text-4xl font-DancingScript text-[#f7319b] text-shadow-xs mt-5 text-center   ">
+
+        <h2 class="text-5xl md:text-4xl font-DancingScript text-[#f7319b] text-shadow-xs text-center   ">
                 Muestras de Cariño <br>
                 <span class="text-[#82094a]">En Sobre</span>
         </h2> 
@@ -221,7 +242,7 @@ const nombreQuinceañera = "Camila Joana";
 
     <!-- Seccion Confirmar Asistencia -->
 
-    <section class="bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center">
+    <section class="bg-[#ffe0f1] w-full py-10 flex flex-col items-center justify-center">
 
         <h2 class="text-5xl md:text-4xl font-DancingScript text-[#E3027A] text-shadow-xs mb-10">
                 Confirmar Asistencia
@@ -248,7 +269,7 @@ const nombreQuinceañera = "Camila Joana";
 
     <!-- Seccion Agradecimientos -->
 
-    <section class="bg-[#FBEAF3] w-full py-10 flex flex-col items-center justify-center" >
+    <section class="bg-[#ffe0f1] w-full py-10 flex flex-col items-center justify-center" >
 
         <div class="w-full h-auto flex flex-col md:flex-row justify-center items-center md:items-start">
 
